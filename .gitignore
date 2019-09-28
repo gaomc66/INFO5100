@@ -44,3 +44,7 @@ NEU Tunnel System \(updated\)\.kml
 NEU Tunnel System latest\.kml
 
 *.kml
+/lab2/build/
+/Lab1/build/
+/carGenerator-1/build/
+/lab2.5/build/
