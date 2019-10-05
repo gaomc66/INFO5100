@@ -40,6 +40,10 @@ public class MainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         leftPanel.setBackground(new java.awt.Color(255, 204, 204));
+<<<<<<< Updated upstream
+=======
+        leftPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+>>>>>>> Stashed changes
 
         btnProdManager.setText("Product Manager");
         btnProdManager.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnProdManagerActionPerformed(evt);
             }
         });
+<<<<<<< Updated upstream
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -64,6 +69,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnProdManager)
                 .addContainerGap(332, Short.MAX_VALUE))
         );
+=======
+        leftPanel.add(btnProdManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 37, -1, -1));
+>>>>>>> Stashed changes
 
         rightSplitPane.setLeftComponent(leftPanel);
 

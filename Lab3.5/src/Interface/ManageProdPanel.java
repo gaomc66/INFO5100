@@ -8,6 +8,10 @@ package Interface;
 import Business.Product;
 import Business.ProductDirectory;
 import java.awt.CardLayout;
+<<<<<<< Updated upstream
+=======
+import java.util.ArrayList;
+>>>>>>> Stashed changes
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +36,7 @@ public class ManageProdPanel extends javax.swing.JPanel {
         initComponents();
         this.prodDir = prodDir;
         this.userProcessContainer = userProcessContainer;
+<<<<<<< Updated upstream
         populate();
     }
     
@@ -40,6 +45,16 @@ public class ManageProdPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for(Product a : prodDir.getProductDirectory()){
+=======
+        populate(prodDir.getProductDirectory());
+    }
+    
+    public void populate(ArrayList<Product> prodDir){
+        DefaultTableModel dtm = (DefaultTableModel)tblDirectory.getModel();
+        dtm.setRowCount(0);
+        
+        for(Product a : prodDir){
+>>>>>>> Stashed changes
             Object[] row = new Object[dtm.getColumnCount()];
             row[0]=a;
             row[1]=a.getAvailNum();
@@ -179,7 +194,11 @@ public class ManageProdPanel extends javax.swing.JPanel {
             if(selectionResult == JOptionPane.YES_OPTION){
                 Product prod = (Product)tblDirectory.getValueAt(selectedRow, 0);
                 prodDir.deleteProduct(prod);
+<<<<<<< Updated upstream
                 populate();
+=======
+                populate(prodDir.getProductDirectory());
+>>>>>>> Stashed changes
             }
         }else{
             JOptionPane.showMessageDialog(null, "Please select a Row!!");
