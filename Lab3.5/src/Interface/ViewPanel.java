@@ -9,6 +9,10 @@ import Business.Product;
 import javax.swing.JOptionPane;
 import Business.ProductDirectory;
 import java.awt.CardLayout;
+<<<<<<< Updated upstream
+=======
+import java.awt.Component;
+>>>>>>> Stashed changes
 import javax.swing.JPanel;
 /**
  *
@@ -210,6 +214,17 @@ public class ViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+<<<<<<< Updated upstream
+=======
+        
+        Component[] comps = userProcessContainer.getComponents();
+        for(Component comp : comps){
+            if(comp instanceof ManageProdPanel){
+            ManageProdPanel manageP = (ManageProdPanel) comp;
+            manageP.populate(prodDir.getProductDirectory());
+            }
+        }
+>>>>>>> Stashed changes
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
