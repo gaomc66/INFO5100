@@ -104,6 +104,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="countAvalCarTxt">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countAvalCarTxtActionPerformed"/>
       </Events>
@@ -114,6 +117,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="countUnAvalCarTxt">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="223" y="76" width="50" height="-1"/>
@@ -122,11 +128,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manufacutured in"/>
+        <Property name="text" type="java.lang.String" value="Manufacutured by Year"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="250" width="-1" height="30"/>
+          <AbsoluteConstraints x="40" y="250" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -136,14 +142,11 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="170" y="250" width="70" height="-1"/>
+          <AbsoluteConstraints x="190" y="250" width="70" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Years"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="240" y="250" width="-1" height="30"/>

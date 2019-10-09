@@ -108,25 +108,26 @@ public class AdminBtnJPanel extends javax.swing.JPanel {
         });
         add(listCarByMaintCertBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 250, -1));
 
+        countAvalCarTxt.setEnabled(false);
         countAvalCarTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 countAvalCarTxtActionPerformed(evt);
             }
         });
         add(countAvalCarTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 41, 50, -1));
+
+        countUnAvalCarTxt.setEnabled(false);
         add(countUnAvalCarTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 76, 50, -1));
 
-        jLabel1.setText("Manufacutured in");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, 30));
+        jLabel1.setText("Manufacutured by Year");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 30));
 
         manuYearTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manuYearTxtActionPerformed(evt);
             }
         });
-        add(manuYearTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 70, -1));
-
-        jLabel2.setText("Years");
+        add(manuYearTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 70, -1));
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, 30));
 
         jLabel3.setText("Serial Number: ");

@@ -52,6 +52,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         updateTimeTxt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
                 adminBtnActionPerformed(evt);
             }
         });
-        leftJPanel.add(adminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+        leftJPanel.add(adminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, -1, -1));
 
         userBtn.setBackground(new java.awt.Color(255, 255, 255));
         userBtn.setText("User");
@@ -100,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
                 userBtnActionPerformed(evt);
             }
         });
-        leftJPanel.add(userBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 30, 85, -1));
+        leftJPanel.add(userBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 40, 85, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         leftJPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
@@ -122,6 +123,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         leftJPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Uber");
+        leftJPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
         mainJSplitPane.setLeftComponent(leftJPanel);
 
@@ -219,6 +225,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton adminBtn;
     private javax.swing.JPanel btnJPanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel leftJPanel;
     private javax.swing.JSplitPane mainJSplitPane;
