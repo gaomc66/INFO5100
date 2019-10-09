@@ -46,15 +46,50 @@ public class CarList  {
         this.carList.remove(car);
     }
     
-    public List<String> getManufacutreList(){
-        List<String> manufactureTempList = new ArrayList<>();
+    public List<String> getSetList(String type){
+        List<String> tempList = new ArrayList<>();
         List<String> manufactureList = new ArrayList<>();
         
-        this.carList.forEach((car) -> {
-            manufactureTempList.add(car.getBrand());
-        });
+        if(null != type)switch(type){
+           
+            case "Manufacture":
+                //tempList.clear();
+                this.carList.forEach((car) -> {
+                tempList.add(car.getBrand());
+                });
+                break;
+            
+            case "City":
+                //tempList.clear();
+                this.carList.forEach(car ->{
+                    tempList.add(car.getAvailble_city());
+                });
+                break;
+            
+            case "serialNum":
+                //tempList.clear();
+                this.carList.forEach(car ->{
+                    tempList.add(String.valueOf(car.getSerial_num()));
+                });
+                break;
+            case "ManufactureYear":
+                //tempList.clear();
+                this.carList.forEach(car ->{
+                    tempList.add(String.valueOf(car.getManufactured_year()));
+                });
+                break;
+                
+            case "ModelNum":
+                //tempList.clear();
+                this.carList.forEach(car ->{
+                    tempList.add(String.valueOf(car.getModel_num()));
+                }); 
+                break;           
+            default:
+            break;
+        }
         
-        Set<String> tempSet = manufactureTempList.stream()
+        Set<String> tempSet = tempList.stream()
                 .collect(Collectors.toSet());
         
         tempSet.forEach(a -> {
@@ -62,9 +97,9 @@ public class CarList  {
         });
         
         return manufactureList;
-        
-        
     }
+    
+    
     public List<Car> getCarList(String type, String info){
         
         if(null != type)switch (type) {
@@ -110,7 +145,7 @@ public class CarList  {
     public List<Car> searchManufacture(String manufacture) {
         return this.carList
                 .stream()
-                .filter(car -> String.valueOf(car.getBrand()).equals(manufacture))
+                .filter(car -> String.valueOf(car.getBrand()).equalsIgnoreCase(manufacture))
                 .collect(Collectors.toList());
     }
     
@@ -134,7 +169,7 @@ public class CarList  {
     
     public List<Car> modelNum(String modelNum){
         return this.carList.stream()
-                .filter(car -> car.getModel_num().equals(modelNum))
+                .filter(car -> car.getModel_num().equalsIgnoreCase(modelNum))
                 .collect(Collectors.toList());
     }
     

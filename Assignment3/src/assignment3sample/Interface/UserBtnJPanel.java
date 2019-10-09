@@ -10,7 +10,11 @@ import assignment3sample.Business.CarList;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< Updated upstream
 import javax.swing.JComboBox;
+=======
+import javax.swing.DefaultComboBoxModel;
+>>>>>>> Stashed changes
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +35,13 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         initComponents();
         this.carList = carList;
         this.viewJPanel = viewJPanel;
+<<<<<<< Updated upstream
         
+=======
+        manufComboBox.setModel(new DefaultComboBoxModel(carList.getSetList("Manufacture").toArray()));
+        modelComboBox.setModel(new DefaultComboBoxModel(carList.getSetList("ModelNum").toArray()));
+        cityComboBox.setModel(new DefaultComboBoxModel(carList.getSetList("City").toArray()));
+>>>>>>> Stashed changes
 
     }
 
@@ -50,19 +60,22 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         find1stAvalCarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        maxSeatsTxt = new javax.swing.JTextField();
-        minSeatsTxt = new javax.swing.JTextField();
         listCatByModelNumBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        modelNumTxt = new javax.swing.JTextField();
         listManufactureBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        manufactureTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cityTxt = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         manufactureTable = new javax.swing.JTable();
+<<<<<<< Updated upstream
         manufComBox = new javax.swing.JComboBox<>();
+=======
+        minSeatsSpinner = new javax.swing.JSpinner();
+        maxSeatsSpinner = new javax.swing.JSpinner();
+        manufComboBox = new javax.swing.JComboBox<>();
+        modelComboBox = new javax.swing.JComboBox<>();
+        cityComboBox = new javax.swing.JComboBox<>();
+>>>>>>> Stashed changes
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -74,7 +87,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 listCatByManuBtnActionPerformed(evt);
             }
         });
-        add(listCatByManuBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 200, -1));
+        add(listCatByManuBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 200, -1));
 
         listCarBySeatsBtn.setBackground(new java.awt.Color(255, 255, 255));
         listCarBySeatsBtn.setText("List Avaliable Car By Seats");
@@ -83,7 +96,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 listCarBySeatsBtnActionPerformed(evt);
             }
         });
-        add(listCarBySeatsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, -1));
+        add(listCarBySeatsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 200, -1));
 
         listCarByCityBtn.setBackground(new java.awt.Color(255, 255, 255));
         listCarByCityBtn.setText("List Cars by City");
@@ -92,7 +105,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 listCarByCityBtnActionPerformed(evt);
             }
         });
-        add(listCarByCityBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 200, -1));
+        add(listCarByCityBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 200, -1));
 
         find1stAvalCarBtn.setBackground(new java.awt.Color(255, 255, 255));
         find1stAvalCarBtn.setText("Find First Avaliable Car");
@@ -101,27 +114,13 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 find1stAvalCarBtnActionPerformed(evt);
             }
         });
-        add(find1stAvalCarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 200, -1));
+        add(find1stAvalCarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 200, -1));
 
         jLabel1.setText("maxSeats > max:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, 20));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, 20));
 
         jLabel2.setText("minSeats < min:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, 20));
-
-        maxSeatsTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maxSeatsTxtActionPerformed(evt);
-            }
-        });
-        add(maxSeatsTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 50, -1));
-
-        minSeatsTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minSeatsTxtActionPerformed(evt);
-            }
-        });
-        add(minSeatsTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 50, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 20));
 
         listCatByModelNumBtn.setBackground(new java.awt.Color(255, 255, 255));
         listCatByModelNumBtn.setText("List Car by Model #");
@@ -130,9 +129,10 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 listCatByModelNumBtnActionPerformed(evt);
             }
         });
-        add(listCatByModelNumBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 200, -1));
+        add(listCatByModelNumBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 200, -1));
 
         jLabel3.setText("Model # :");
+<<<<<<< Updated upstream
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, 20));
 
         modelNumTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +141,9 @@ public class UserBtnJPanel extends javax.swing.JPanel {
             }
         });
         add(modelNumTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 100, -1));
+=======
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, 20));
+>>>>>>> Stashed changes
 
         listManufactureBtn.setBackground(new java.awt.Color(255, 255, 255));
         listManufactureBtn.setText("manufactures");
@@ -149,9 +152,10 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 listManufactureBtnActionPerformed(evt);
             }
         });
-        add(listManufactureBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 100, 110));
+        add(listManufactureBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 100, 110));
 
         jLabel4.setText("Manufacuture:");
+<<<<<<< Updated upstream
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, 20));
 
         manufactureTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -160,16 +164,12 @@ public class UserBtnJPanel extends javax.swing.JPanel {
             }
         });
         add(manufactureTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 70, -1));
+=======
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 20));
+>>>>>>> Stashed changes
 
         jLabel5.setText("City:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 20));
-
-        cityTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityTxtActionPerformed(evt);
-            }
-        });
-        add(cityTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 100, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 20));
 
         manufactureTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,6 +192,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(manufactureTable);
 
+<<<<<<< Updated upstream
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 90, 110));
 
         manufComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -201,46 +202,90 @@ public class UserBtnJPanel extends javax.swing.JPanel {
             }
         });
         add(manufComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
+=======
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 90, 110));
+
+        minSeatsSpinner.setValue(1);
+        add(minSeatsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
+
+        maxSeatsSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        maxSeatsSpinner.setValue(5);
+        add(maxSeatsSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+
+        manufComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        manufComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manufComboBoxActionPerformed(evt);
+            }
+        });
+        add(manufComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 80, -1));
+
+        modelComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        modelComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modelComboBoxActionPerformed(evt);
+            }
+        });
+        add(modelComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, -1));
+
+        cityComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        cityComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityComboBoxActionPerformed(evt);
+            }
+        });
+        add(cityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 110, -1));
+>>>>>>> Stashed changes
     }// </editor-fold>//GEN-END:initComponents
 
     private void listCatByManuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCatByManuBtnActionPerformed
         // TODO add your handling code here:
-        if(manufactureTxt.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please Input a manufacture!");
-            return;
-        }
-        ArrayList<Car> searchResult = (ArrayList) carList.getCarList("searchManufacture", manufactureTxt.getText());
+//        if(manufactureTxt.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "Please Input a manufacture!");
+//            return;
+//        }
+        String searchInfo = manufComboBox.getSelectedItem().toString();
+        ArrayList<Car> searchResult = (ArrayList) carList.getCarList("searchManufacture", searchInfo);
         showUserListCarJPanel(searchResult);
     }//GEN-LAST:event_listCatByManuBtnActionPerformed
 
     private void listCarBySeatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCarBySeatsBtnActionPerformed
         // TODO add your handling code here:
+        
+        
         try{
-            Integer.valueOf(minSeatsTxt.getText());
-            Integer.valueOf(maxSeatsTxt.getText());
+//            Integer.valueOf(minSeatsTxt.getText());
+//            Integer.valueOf(maxSeatsTxt.getText());
+              Integer.valueOf(minSeatsSpinner.getValue()+"");
+              Integer.valueOf(maxSeatsSpinner.getValue()+"");
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Must have a int type min/max SeatsNum!");
         }
-        
-        if(minSeatsTxt.getText().equals("") ){
-            return;
-        }else{
-            int min = Integer.valueOf(minSeatsTxt.getText());
-            int max = Integer.valueOf(maxSeatsTxt.getText());
+//        
+//        if(minSeatsTxt.getText().equals("") ){
+//            return;
+//        }else{
+            int min = Integer.valueOf(minSeatsSpinner.getValue()+"");
+            int max = Integer.valueOf(maxSeatsSpinner.getValue()+"");
             ArrayList<Car> searchResult = (ArrayList) carList.goodSeatsNum(min, max);
             showUserListCarJPanel(searchResult);
-        }
+//        }
         
 
     }//GEN-LAST:event_listCarBySeatsBtnActionPerformed
 
     private void listCarByCityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCarByCityBtnActionPerformed
         // TODO add your handling code here:
-        if(cityTxt.getText().equals("")){
+//        if(cityTxt.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "Please Input a city!");
+//            return;
+//        } 
+        if(cityComboBox.getSelectedItem() == null){
             JOptionPane.showMessageDialog(null, "Please Input a city!");
-            return;
-        } 
-        ArrayList<Car> searchResult = (ArrayList) carList.getCarList("availbleCity", cityTxt.getText());
+        }
+        String searchInfo = cityComboBox.getSelectedItem().toString();
+
+        ArrayList<Car> searchResult = (ArrayList) carList.getCarList("availbleCity", searchInfo);
         showUserListCarJPanel(searchResult);
     }//GEN-LAST:event_listCarByCityBtnActionPerformed
 
@@ -260,33 +305,23 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_find1stAvalCarBtnActionPerformed
 
-    private void maxSeatsTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxSeatsTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maxSeatsTxtActionPerformed
-
-    private void minSeatsTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minSeatsTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_minSeatsTxtActionPerformed
-
     private void listCatByModelNumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCatByModelNumBtnActionPerformed
         // TODO add your handling code here:
-        if(modelNumTxt.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please Input a model #!");
-            return;
-        }
-        
-        ArrayList<Car> searchResult = (ArrayList) carList.getCarList("modelNum",modelNumTxt.getText());
+//        if(modelNumTxt.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "Please Input a model #!");
+//            return;
+//        }
+
+        String searchInfo = modelComboBox.getSelectedItem().toString();
+
+        ArrayList<Car> searchResult = (ArrayList) carList.getCarList("modelNum",searchInfo);
         
         showUserListCarJPanel(searchResult);
     }//GEN-LAST:event_listCatByModelNumBtnActionPerformed
 
-    private void modelNumTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelNumTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modelNumTxtActionPerformed
-
     private void listManufactureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listManufactureBtnActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> manufactureList = (ArrayList) carList.getManufacutreList();
+        ArrayList<String> manufactureList = (ArrayList) carList.getSetList("Manufacture");
 //        for(String a : manufactureList){
 //            System.out.println(a);
 //        }
@@ -303,13 +338,17 @@ public class UserBtnJPanel extends javax.swing.JPanel {
  
     }//GEN-LAST:event_listManufactureBtnActionPerformed
 
-    private void manufactureTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufactureTxtActionPerformed
+    private void manufComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manufactureTxtActionPerformed
+    }//GEN-LAST:event_manufComboBoxActionPerformed
 
-    private void cityTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTxtActionPerformed
+    private void modelComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cityTxtActionPerformed
+    }//GEN-LAST:event_modelComboBoxActionPerformed
+
+    private void cityComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityComboBoxActionPerformed
 
     private void manufComBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufComBoxActionPerformed
         // TODO add your handling code here:
@@ -324,7 +363,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cityTxt;
+    private javax.swing.JComboBox<String> cityComboBox;
     private javax.swing.JButton find1stAvalCarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -337,11 +376,14 @@ public class UserBtnJPanel extends javax.swing.JPanel {
     private javax.swing.JButton listCatByManuBtn;
     private javax.swing.JButton listCatByModelNumBtn;
     private javax.swing.JButton listManufactureBtn;
+<<<<<<< Updated upstream
     private javax.swing.JComboBox<String> manufComBox;
+=======
+    private javax.swing.JComboBox<String> manufComboBox;
+>>>>>>> Stashed changes
     private javax.swing.JTable manufactureTable;
-    private javax.swing.JTextField manufactureTxt;
-    private javax.swing.JTextField maxSeatsTxt;
-    private javax.swing.JTextField minSeatsTxt;
-    private javax.swing.JTextField modelNumTxt;
+    private javax.swing.JSpinner maxSeatsSpinner;
+    private javax.swing.JSpinner minSeatsSpinner;
+    private javax.swing.JComboBox<String> modelComboBox;
     // End of variables declaration//GEN-END:variables
 }
