@@ -10,6 +10,7 @@ import assignment3sample.Business.CarList;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -25,10 +26,13 @@ public class UserBtnJPanel extends javax.swing.JPanel {
     CarList carList;
     JPanel viewJPanel;
     
+    
     UserBtnJPanel(CarList carList, JPanel viewJPanel) {
         initComponents();
         this.carList = carList;
         this.viewJPanel = viewJPanel;
+        
+
     }
 
     /**
@@ -58,6 +62,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         cityTxt = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         manufactureTable = new javax.swing.JTable();
+        manufComBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,7 +140,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 modelNumTxtActionPerformed(evt);
             }
         });
-        add(modelNumTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 100, -1));
+        add(modelNumTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 100, -1));
 
         listManufactureBtn.setBackground(new java.awt.Color(255, 255, 255));
         listManufactureBtn.setText("manufactures");
@@ -154,7 +159,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
                 manufactureTxtActionPerformed(evt);
             }
         });
-        add(manufactureTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 70, -1));
+        add(manufactureTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 70, -1));
 
         jLabel5.setText("City:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 20));
@@ -188,6 +193,14 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(manufactureTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 90, 110));
+
+        manufComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        manufComBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manufComBoxActionPerformed(evt);
+            }
+        });
+        add(manufComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void listCatByManuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCatByManuBtnActionPerformed
@@ -298,6 +311,11 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cityTxtActionPerformed
 
+    private void manufComBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufComBoxActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_manufComBoxActionPerformed
+
     private void showUserListCarJPanel(ArrayList<Car> searchResult){
         UserListCarJPanel userListCarJPanel = new UserListCarJPanel(viewJPanel,searchResult, carList );
         viewJPanel.add("UserListCarJPanel",userListCarJPanel);
@@ -319,6 +337,7 @@ public class UserBtnJPanel extends javax.swing.JPanel {
     private javax.swing.JButton listCatByManuBtn;
     private javax.swing.JButton listCatByModelNumBtn;
     private javax.swing.JButton listManufactureBtn;
+    private javax.swing.JComboBox<String> manufComBox;
     private javax.swing.JTable manufactureTable;
     private javax.swing.JTextField manufactureTxt;
     private javax.swing.JTextField maxSeatsTxt;
