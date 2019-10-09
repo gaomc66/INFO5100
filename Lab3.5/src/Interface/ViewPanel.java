@@ -9,10 +9,7 @@ import Business.Product;
 import javax.swing.JOptionPane;
 import Business.ProductDirectory;
 import java.awt.CardLayout;
-<<<<<<< Updated upstream
-=======
 import java.awt.Component;
->>>>>>> Stashed changes
 import javax.swing.JPanel;
 /**
  *
@@ -168,45 +165,48 @@ public class ViewPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         
-            String productPrice = txtPrice.getText();
-            try{
-                Double.parseDouble(productPrice);
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Please type in a number of price");
-                return;
-            }
+           
             
-            String availability = txtAvailablity.getText();
-            try{
-                   Integer.parseInt(availability);
-            }catch(NumberFormatException e){ 
-                JOptionPane.showMessageDialog(null, "Please type in a number of Availability");
-            }
-            
-            txtAvailablity.setEditable(true);
-            txtPrice.setEditable(true);
-            txtProdName.setEditable(true);
-            txtDesc.setEnabled(true);
-            btnSave.setEnabled(true);
-            btnUpdate.setEnabled(false);
+        txtAvailablity.setEditable(true);
+        txtPrice.setEditable(true);
+        txtProdName.setEditable(true);
+        txtDesc.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-            txtAvailablity.setEditable(false);
-            txtPrice.setEditable(false);
-            txtProdName.setEditable(false);
-            txtDesc.setEnabled(false);
-            btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true);
+            
+         String productPrice = txtPrice.getText();
+        try{
+            Double.parseDouble(productPrice);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please type in a number of price");
+            return;
+        }
+
+        String availability = txtAvailablity.getText();
+        try{
+               Integer.parseInt(availability);
+        }catch(NumberFormatException e){ 
+            JOptionPane.showMessageDialog(null, "Please type in a number of Availability");
+            }
         
-            product.setName(txtProdName.getText());
-            product.setPrice(Double.parseDouble(txtPrice.getText()));
-            product.setAvailNum(Integer.parseInt(txtAvailablity.getText()));
-            product.setDescription(txtDesc.getText());
-        
-            JOptionPane.showMessageDialog(null, "Account updated successfully");        
+        txtAvailablity.setEditable(false);
+        txtPrice.setEditable(false);
+        txtProdName.setEditable(false);
+        txtDesc.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+
+        product.setName(txtProdName.getText());
+        product.setPrice(Double.parseDouble(txtPrice.getText()));
+        product.setAvailNum(Integer.parseInt(txtAvailablity.getText()));
+        product.setDescription(txtDesc.getText());
+
+        JOptionPane.showMessageDialog(null, "Account updated successfully");        
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -214,8 +214,6 @@ public class ViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-<<<<<<< Updated upstream
-=======
         
         Component[] comps = userProcessContainer.getComponents();
         for(Component comp : comps){
@@ -224,7 +222,6 @@ public class ViewPanel extends javax.swing.JPanel {
             manageP.populate(prodDir.getProductDirectory());
             }
         }
->>>>>>> Stashed changes
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
