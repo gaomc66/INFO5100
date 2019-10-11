@@ -113,7 +113,7 @@ public class LoginScreen extends javax.swing.JPanel {
         //only customer or suppliers should be listed based on the selection
         }else if(list.get(0).getRole() == "Supplier"){
             txtTitle.setText("Supplier Login Screen");
-            comboUser.set
+            comboUser.
         }
     }
     
