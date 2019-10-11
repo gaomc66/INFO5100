@@ -10,11 +10,8 @@ import assignment3sample.Business.CarList;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< Updated upstream
 import javax.swing.JComboBox;
-=======
 import javax.swing.DefaultComboBoxModel;
->>>>>>> Stashed changes
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -36,12 +33,10 @@ public class UserBtnJPanel extends javax.swing.JPanel {
         this.carList = carList;
         this.viewJPanel = viewJPanel;
 <<<<<<< Updated upstream
-        
-=======
+
         manufComboBox.setModel(new DefaultComboBoxModel(carList.getSetList("Manufacture").toArray()));
         modelComboBox.setModel(new DefaultComboBoxModel(carList.getSetList("ModelNum").toArray()));
         cityComboBox.setModel(new DefaultComboBoxModel(carList.getSetList("City").toArray()));
->>>>>>> Stashed changes
 
     }
 
