@@ -6,12 +6,45 @@
 package Business.Users;
 
 import Business.Abstract.User;
+import Business.CustomerDirectory;
 import java.util.Date;
 
 /**
  *
  * @author AEDSpring2019
  */
-public class Customer {
+public class Customer extends User implements Comparable<Customer> {
+
+    CustomerDirectory custdir;
+    
+    public Customer(String password, String userName, String role) {
+        super(password, userName, "Customer");
+        custdir = new CustomerDirectory();
+    }
+
+    public boolean verify(String password){
+        if(password.equals(getPassword()))
+            return true;
+        return false;
+    }
+ 
+    public CustomerDirectory getDirectory() {
+        return custdir;
+    }
+
+    public void setDirectory(CustomerDirectory directory) {
+        this.custdir = directory;
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        return o.getUserName().compareTo(this.getUserName());
+    }
+
+    @Override
+    public String toString() {
+        return getUserName(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
