@@ -16,8 +16,18 @@ import java.util.Date;
 public class Customer extends User implements Comparable<Customer> {
 
     CustomerDirectory custdir;
+    Date createDate;
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate() {
+        Long millisTime = System.currentTimeMillis();
+        createDate = new Date(millisTime);
+    }
     
-    public Customer(String password, String userName, String role) {
+    public Customer(String password, String userName) {
         super(password, userName, "Customer");
         custdir = new CustomerDirectory();
     }

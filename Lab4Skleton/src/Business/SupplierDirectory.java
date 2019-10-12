@@ -6,9 +6,11 @@
 package Business;
 
 import Business.Abstract.User;
+import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -17,6 +19,7 @@ import java.util.List;
 public class SupplierDirectory {
     
     private List<User> supplierList;
+    private Supplier supplier;
     
     public SupplierDirectory(){
         supplierList = new ArrayList<>();
@@ -28,6 +31,20 @@ public class SupplierDirectory {
 
     public void setSupplierList(List<User> supplierList) {
         this.supplierList = supplierList;
+    }
+
+    public void addSupplier(Supplier supplier){
+        supplierList.add(supplier);
+    }
+    
+    public Optional<User> getSupplier(String name){
+        return supplierList.stream()
+                .filter(supp -> supp.getUserName().equals("name"))
+                .findFirst();
+    }
+    
+    public void removeSupplier(Supplier supplier){
+        supplierList.remove(supplier);
     }
     
     

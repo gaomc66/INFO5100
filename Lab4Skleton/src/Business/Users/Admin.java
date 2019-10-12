@@ -8,6 +8,8 @@ package Business.Users;
 import Business.Abstract.User;
 import Business.CustomerDirectory;
 import Business.SupplierDirectory;
+import Business.userInfo.CustomerInfoList;
+import Business.userInfo.SupplierInfoList;
 
 /**
  *
@@ -21,7 +23,12 @@ public class Admin extends User {
     public Admin() {
         super("", "", "Admin");
         suppDir = new SupplierDirectory();
+        suppDir.setSupplierList(SupplierInfoList.getSupplierList().supplierList);
+        
         custDir = new CustomerDirectory();
+        custDir.setCustomerList(CustomerInfoList.getCarList().customenrInfoList);
+        
+        
     }
 
     public SupplierDirectory getSuppDir() {

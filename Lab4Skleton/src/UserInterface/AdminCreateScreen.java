@@ -5,11 +5,14 @@
  */
 package UserInterface;
 
+import Business.CustomerDirectory;
+import Business.SupplierDirectory;
 import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -31,10 +34,17 @@ public class AdminCreateScreen extends javax.swing.JPanel {
      */
     private JPanel panelRight;
     private Admin admin;
+    CustomerDirectory custDir;
+    SupplierDirectory suppDir;
+    
+    
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
         this.admin = admin;
+        this.custDir = admin.getCustDir();
+        this.suppDir = admin.getSuppDir();
+
     }
 
     /**
@@ -143,7 +153,24 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        
+        if(!txtPword.getText().equals(txtRePword.getText())){
+            JOptionPane.showMessageDialog(null, "Passwords not same");
+        }else{
+            if(radioCustomer.isSelected() == true){
+                Customer customer = new Customer(txtPword.getText(), txtUser.getText());
+                custDir.addCustomer(customer);
+                JOptionPane.showMessageDialog(null, "Create Customer Success!!");
+
+            }else if(radioSupplier.isSelected() == true){
+                Supplier supplier = new Supplier(txtPword.getText(), txtUser.getText());
+                suppDir.addSupplier(supplier);
+                JOptionPane.showMessageDialog(null, "Create Customer Success!!");
+
+            }else{
+                JOptionPane.showMessageDialog(null, "Please select one single role for this user");
+            }
+            
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void radioCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCustomerActionPerformed
@@ -154,6 +181,15 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
         CardLayout layout = (CardLayout)panelRight.getLayout();
         panelRight.remove(this);
+        
+        Component[] comps = panelRight.getComponents();
+        for(Component comp : comps){
+            if(comp instanceof AdminMainScreen){
+            AdminMainScreen refreshTable = (AdminMainScreen) comp;
+            refreshTable.populate();
+            }
+        }
+        
         layout.previous(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
 
