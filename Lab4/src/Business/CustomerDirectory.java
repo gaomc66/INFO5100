@@ -37,10 +37,10 @@ public class CustomerDirectory {
         customerList.add(custmor);
     }
     
-    public Optional<User> getCustomer(String name){
+    public User getCustomer(String name){
         return customerList.stream()
                 .filter(cus -> cus.getUserName().equals("name"))
-                .findFirst();
+                .findFirst().get();
     }
     
     public void removeCustomer(Customer customer){

@@ -23,8 +23,8 @@ public class CustomerInfoList {
         
         customenrInfoList = new ArrayList<User>();
         
-        Customer cust1 = new Customer("123","gaomc66");
-        Customer cust2 = new Customer("123", "gaomc55");
+        Customer cust1 = new Customer("Ggg1122@","gao_m@g.com");
+        Customer cust2 = new Customer("Ggg1122@", "gao_m@c.com");
         
         customenrInfoList.add(cust1);
         customenrInfoList.add(cust2);

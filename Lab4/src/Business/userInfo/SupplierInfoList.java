@@ -22,8 +22,8 @@ public class SupplierInfoList {
         
         supplierList = new ArrayList<User>();
         
-        Supplier supp1 = new Supplier("123","supp1");
-        Supplier supp2 = new Supplier("123", "supp2");
+        Supplier supp1 = new Supplier("wei_z@g.com","Sutt@11");
+        Supplier supp2 = new Supplier("z_w.com", "Sutt@11");
         
         supplierList.add(supp1);
         supplierList.add(supp2);
