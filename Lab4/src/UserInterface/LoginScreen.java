@@ -24,6 +24,7 @@ public class LoginScreen extends javax.swing.JPanel {
      * Creates new form LoginScreen
      */
     List<User> list;
+    User user;
     JPanel panelRight;
     public LoginScreen(JPanel panelRight, List<User> list) {
         initComponents();
@@ -97,8 +98,21 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        
+        String inputUsername = comboUser.getSelectedItem().toString();
+        this.user = list.stream().filter(a -> a.getUserName().equals(inputUsername))
+                .findFirst().get();
+        if(user.getPassword().equals(txtPword.getText())){
+            showSccessScreen();
+        }else{
+            JOptionPane.showMessageDialog(null, "Wrong password");
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
+    
+    private void showSccessScreen(){
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new SuccessScreen(panelRight, this.user));
+        layout.next(panelRight);
+    }
 
     private void comboUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboUserActionPerformed
         // TODO add your handling code here:
@@ -109,12 +123,9 @@ public class LoginScreen extends javax.swing.JPanel {
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
         //Based on the selection
         if(list.size() ==0){
-            
             JOptionPane.showMessageDialog(null, "Please create a user at first");
             return;
-            
         }else{
-           
             if(list.get(0).getRole().equals("Customer")){
             txtTitle.setText("Customer Login Screen");
 //            comboUser.removeAllItems();
@@ -122,9 +133,7 @@ public class LoginScreen extends javax.swing.JPanel {
             }else if(list.get(0).getRole() == "Supplier"){
                 txtTitle.setText("Supplier Login Screen");
             }
-            
             comboUser.setModel(new DefaultComboBoxModel(list.toArray()));
-
         }
         
     }

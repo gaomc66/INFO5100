@@ -6,6 +6,7 @@
 package UserInterface;
 
 import Business.Abstract.User;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,10 +18,14 @@ public class SuccessScreen extends javax.swing.JPanel {
      * Creates new form SuccessScreen
      */
     private User user; 
-    public SuccessScreen(User user) {
+    
+  
+
+    SuccessScreen(JPanel panelRight, User user) {
         initComponents();
         this.user = user;
-        initialize();
+        
+        initialize();    
     }
 
     /**

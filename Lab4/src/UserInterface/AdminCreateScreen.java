@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Business.Abstract.User;
 import Business.CustomerDirectory;
 import Business.SupplierDirectory;
 import Business.Users.Admin;
@@ -36,6 +37,7 @@ public class AdminCreateScreen extends javax.swing.JPanel {
     private Admin admin;
     CustomerDirectory custDir;
     SupplierDirectory suppDir;
+    User user;
     
     
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
@@ -71,6 +73,12 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
+            }
+        });
+
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserActionPerformed(evt);
             }
         });
 
@@ -151,47 +159,79 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean usernamePatternCorrect() {
+        Pattern p = Pattern.compile("^[a-zA-z0-9]+_[a-zA-z0-9]+@[a-zA-z0-9]+.[a-zA-z0-9]+$");
+        Matcher m = p.matcher(txtUser.getText());
+        boolean result = m.matches();
+        System.out.println(result);
+        return result;
+    }
+    
+    private boolean passwordPatternCorrect(){
+        Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-z])(?=.*[0-9])(?=.*[!@#\\$%\\^\\&])[A-Za-z0-9!@#\\$%\\^\\&]{6,}$");
+        Matcher m = p.matcher(txtPword.getText());
+        boolean result = m.matches();
+        return result;
+    }
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        if(!txtPword.getText().equals(txtRePword.getText())){
+        
+        if (!usernamePatternCorrect()) {
+            JOptionPane.showMessageDialog(null, "username Incorrect!!!");
+            txtUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, new java.awt.Color(255, 0, 51), java.awt.Color.red, java.awt.Color.red));       
+        } else if (!passwordPatternCorrect()){
+            txtPword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, new java.awt.Color(255, 0, 51), java.awt.Color.red, java.awt.Color.red));       
+            JOptionPane.showMessageDialog(null, "password Incorrect!!!");
+        } else if (!txtPword.getText().equals(txtRePword.getText())){
             JOptionPane.showMessageDialog(null, "Passwords not same");
-        }else{
-            if(radioCustomer.isSelected() == true){
+            txtRePword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, new java.awt.Color(255, 0, 51), java.awt.Color.red, java.awt.Color.red));       
+        } else if (usernamePatternCorrect() && passwordPatternCorrect()){
+            if (radioCustomer.isSelected() == true){
                 Customer customer = new Customer(txtPword.getText(), txtUser.getText());
+                this.user = (User) customer;
                 custDir.addCustomer(customer);
                 JOptionPane.showMessageDialog(null, "Create Customer Success!!");
-
-            }else if(radioSupplier.isSelected() == true){
+                showSuccessScreen();
+            } else if (radioSupplier.isSelected() == true){              
                 Supplier supplier = new Supplier(txtPword.getText(), txtUser.getText());
+                this.user = (User) supplier;
                 suppDir.addSupplier(supplier);
                 JOptionPane.showMessageDialog(null, "Create Customer Success!!");
-
-            }else{
+                showSuccessScreen();
+            } else {
                 JOptionPane.showMessageDialog(null, "Please select one single role for this user");
-            }
-            
-        }
+            }     
+        }  
+        
+        
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void showSuccessScreen(){
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new SuccessScreen(panelRight, this.user));
+        layout.next(panelRight);
+    }
     private void radioCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCustomerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioCustomerActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        
+        panelRight.remove(this);      
         Component[] comps = panelRight.getComponents();
         for(Component comp : comps){
             if(comp instanceof AdminMainScreen){
             AdminMainScreen refreshTable = (AdminMainScreen) comp;
             refreshTable.populate();
             }
-        }
-        
+        }     
         layout.previous(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserActionPerformed
 
     
     
@@ -207,4 +247,6 @@ public class AdminCreateScreen extends javax.swing.JPanel {
     private javax.swing.JTextField txtRePword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+
 }
