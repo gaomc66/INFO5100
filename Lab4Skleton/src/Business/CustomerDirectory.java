@@ -9,6 +9,8 @@ import Business.Abstract.User;
 import Business.Users.Customer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -17,6 +19,7 @@ import java.util.List;
 public class CustomerDirectory {
     
     private List<User> customerList;
+    private Customer customer;
     
     public CustomerDirectory(){
         customerList = new ArrayList<>();
@@ -28,6 +31,20 @@ public class CustomerDirectory {
 
     public void setCustomerList(List<User> customenrList) {
         this.customerList = customenrList;
+    }
+    
+    public void addCustomer(Customer custmor){
+        customerList.add(custmor);
+    }
+    
+    public Optional<User> getCustomer(String name){
+        return customerList.stream()
+                .filter(cus -> cus.getUserName().equals("name"))
+                .findFirst();
+    }
+    
+    public void removeCustomer(Customer customer){
+        customerList.remove(customer);
     }
     
 }

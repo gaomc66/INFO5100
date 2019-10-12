@@ -10,6 +10,7 @@ import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -107,14 +108,25 @@ public class LoginScreen extends javax.swing.JPanel {
     private void initialize(){
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
         //Based on the selection
-        if(list.get(0).getRole() == "Customer"){
-            txtTitle.setText("****** Login Screen");
-            comboUser.removeAllItems();
-        //only customer or suppliers should be listed based on the selection
-        }else if(list.get(0).getRole() == "Supplier"){
-            txtTitle.setText("Supplier Login Screen");
-            comboUser.
+        if(list.size() ==0){
+            
+            JOptionPane.showMessageDialog(null, "Please create a user at first");
+            return;
+            
+        }else{
+           
+            if(list.get(0).getRole().equals("Customer")){
+            txtTitle.setText("Customer Login Screen");
+//            comboUser.removeAllItems();
+            //only customer or suppliers should be listed based on the selection
+            }else if(list.get(0).getRole() == "Supplier"){
+                txtTitle.setText("Supplier Login Screen");
+            }
+            
+            comboUser.setModel(new DefaultComboBoxModel(list.toArray()));
+
         }
+        
     }
     
 
