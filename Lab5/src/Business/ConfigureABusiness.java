@@ -49,7 +49,7 @@ public class ConfigureABusiness {
         DoctorOrganization doctorOrganization = new DoctorOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(doctorOrganization);
         Employee employeeDoc = new Employee();
-        employeeDoc.setName("Alice");
+        employeeDoc.setName("Jackie");
         UserAccount docAccount = new UserAccount();
         docAccount.setUsername("doctor");
         docAccount.setPassword("doctor");
@@ -61,7 +61,7 @@ public class ConfigureABusiness {
         LabOrganization labOrganization = new LabOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(labOrganization);
         Employee employeeLab = new Employee();
-        employeeLab.setName("Bob");
+        employeeLab.setName("Ben");
         UserAccount labAccount = new UserAccount();
         labAccount.setUsername("lab");
         labAccount.setPassword("lab");
