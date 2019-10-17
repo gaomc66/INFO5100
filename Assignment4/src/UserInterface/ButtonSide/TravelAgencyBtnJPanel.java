@@ -38,18 +38,21 @@ public class TravelAgencyBtnJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        manageAirlinerBtn.setBackground(new java.awt.Color(255, 255, 255));
         manageAirlinerBtn.setText("Manage Airliners");
         add(manageAirlinerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 151, -1, -1));
 
         jLabel1.setText("// -> ManageAirlinerJPanel");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
+        searchBtn.setBackground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Search");
         add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jLabel2.setText("// -> ManageMasterFlightSchedualJPanel");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
+        manageTavelOfficBtn.setBackground(new java.awt.Color(255, 255, 255));
         manageTavelOfficBtn.setText("Manage Travel Office");
         manageTavelOfficBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

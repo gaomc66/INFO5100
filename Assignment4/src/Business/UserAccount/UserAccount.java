@@ -5,6 +5,9 @@
  */
 package Business.UserAccount;
 
+import Business.Airliner.Airliner;
+import Business.TravelOffice.TravelOffice;
+
 /**
  *
  * @author gaomc
@@ -14,10 +17,14 @@ public class UserAccount {
     private String username;
     private String password;
     private String role;
+    
+    private Airliner airliner;
+    private TravelOffice travelOffice;
 
     public UserAccount() {
         
     }
+    
     
     public String getUsername() {
         return username;
@@ -33,6 +40,25 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setMember(Airliner airliner){
+        this.airliner = airliner;
+        this.travelOffice = null;
+    }
+    
+    public void setMember(TravelOffice travelOffice){
+        this.travelOffice = travelOffice;
+        this.airliner = null;
+    }
+    
+    public Object getMember(){
+        if(this.travelOffice != null){
+            return this.travelOffice;
+        }else if(this.airliner != null){
+            return this.airliner;
+        }
+        return null;
     }
 
     public String getRole() {

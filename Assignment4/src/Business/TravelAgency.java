@@ -12,17 +12,29 @@ import Business.UserAccount.UserAccountDirectory;
 
 public class TravelAgency {
     // Usr Account
-    UserAccount userAcccount;
-    UserAccountDirectory userAccountDirectory;
+//    private UserAccount userAcccount;
+    private UserAccountDirectory userAccountDirectory;
     // multi-Airliner
-    AirlinerDirectory airlinerDirectory;
+    private AirlinerDirectory airlinerDirectory;
     // multi-Retailer
-    TravelOfficeDirectory travelOfficeDirectory;
+    private TravelOfficeDirectory travelOfficeDirectory;
     
     public TravelAgency(){
         this.userAccountDirectory = new UserAccountDirectory();
         this.airlinerDirectory = new AirlinerDirectory();
         this.travelOfficeDirectory = new TravelOfficeDirectory();
     }
-    
+
+    public AirlinerDirectory getAirlinerDirectory() {
+        return airlinerDirectory;
+    }
+
+    public TravelOfficeDirectory getTravelOfficeDirectory() {
+        return travelOfficeDirectory;
+    }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
 }

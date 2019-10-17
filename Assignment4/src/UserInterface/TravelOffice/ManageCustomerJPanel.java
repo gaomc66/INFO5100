@@ -5,6 +5,13 @@
  */
 package UserInterface.TravelOffice;
 
+import Business.TravelOffice.Customer.Customer;
+import Business.TravelOffice.Customer.CustomerDirectory;
+import Business.TravelOffice.TravelOffice;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gaomc
@@ -14,8 +21,35 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCustomerJPanel
      */
-    public ManageCustomerJPanel() {
+    
+    private List<Customer> customerList;
+    private CustomerDirectory customerDirectory;
+    private JPanel cardSequenceJPanel;
+    
+    
+    public ManageCustomerJPanel(JPanel cardSequenceJPanel, TravelOffice travelOffice) {
         initComponents();
+        this.cardSequenceJPanel = cardSequenceJPanel;
+        this.customerDirectory = travelOffice.getCustomerDirectory();
+        System.out.println("1");
+        System.out.println(customerDirectory.getCustomerList());
+        populate(customerDirectory.getCustomerList());
+    }
+    
+    public void populate(List<Customer> customerList){
+        DefaultTableModel dtm = (DefaultTableModel)customerJTable.getModel();
+        dtm.setRowCount(0);
+        
+        customerList.forEach((Customer customer) -> {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = customer;
+            row[1] = customer.getId();
+            row[2] = customer.getIdentityInfo();
+            row[3] = customer.getOfficeInfo();
+            row[4] = customer.getTicket();
+            
+            dtm.addRow(row);
+        });
     }
 
     /**
@@ -31,7 +65,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         customerManageJTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         customerJTable = new javax.swing.JTable();
-        viewCustomerJTable = new javax.swing.JButton();
+        viewCustomerBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -53,21 +87,21 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         customerJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Customer", "Member ID", "Passport Info", "Ticket Info"
+                "Customer", "Member ID", "Identity Info", "Office Info", "Ticket Info"
             }
         ));
         jScrollPane2.setViewportView(customerJTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 390, 220));
 
-        viewCustomerJTable.setText("View Customer");
-        add(viewCustomerJTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+        viewCustomerBtn.setText("View Customer");
+        add(viewCustomerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Customer List");
@@ -94,6 +128,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton viewCustomerJTable;
+    private javax.swing.JButton viewCustomerBtn;
     // End of variables declaration//GEN-END:variables
 }

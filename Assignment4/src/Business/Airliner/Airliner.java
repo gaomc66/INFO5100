@@ -5,16 +5,39 @@
  */
 package Business.Airliner;
 
+import Business.Flight.FlightSchedual;
 import Business.UserAccount.UserAccount;
 
 
 public class Airliner {
     // CRUD for Flight
     // one Airliner has one fleet
-    
-    UserAccount userAccount;
-    
+      
     private String id;
     private String name;
+    
+    private FlightSchedual flightSchedual;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public FlightSchedual getFlightSchedual() {
+        return flightSchedual;
+    }
+
+    
    
 }

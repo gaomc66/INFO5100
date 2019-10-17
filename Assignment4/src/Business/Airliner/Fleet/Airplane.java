@@ -7,10 +7,7 @@ package Business.Airliner.Fleet;
 
 import Business.UserAccount.UserAccount;
 
-/**
- *
- * @author gaomc
- */
+
 public class Airplane {
     // how many seats for a single Ariplane
     private int seatNumber;

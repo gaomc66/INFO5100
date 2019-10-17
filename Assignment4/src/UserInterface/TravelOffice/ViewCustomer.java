@@ -69,9 +69,11 @@ public class ViewCustomer extends javax.swing.JPanel {
         });
         add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 150, -1));
 
+        updateCustomerBtn.setBackground(new java.awt.Color(255, 255, 255));
         updateCustomerBtn.setText("Update");
         add(updateCustomerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
 
+        saveCustomerBtn.setBackground(new java.awt.Color(255, 255, 255));
         saveCustomerBtn.setText("Save");
         add(saveCustomerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 

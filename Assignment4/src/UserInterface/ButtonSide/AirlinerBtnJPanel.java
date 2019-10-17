@@ -42,15 +42,18 @@ public class AirlinerBtnJPanel extends javax.swing.JPanel {
         jLabel1.setText("Airliner name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Manage Flight");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         jLabel2.setText("// -> flight Schedule");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
+        goAirlinerBtn.setBackground(new java.awt.Color(255, 255, 255));
         goAirlinerBtn.setText("GO");
         add(goAirlinerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
 
+        airlinerListComBox.setBackground(new java.awt.Color(255, 255, 255));
         airlinerListComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(airlinerListComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 

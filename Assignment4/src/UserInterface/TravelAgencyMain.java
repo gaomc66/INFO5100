@@ -5,6 +5,12 @@
  */
 package UserInterface;
 
+import Business.TravelAgency;
+import Business.UserAccount.UserAccount;
+import UserInterface.ButtonSide.AirlinerBtnJPanel;
+import UserInterface.ButtonSide.TravelAgencyBtnJPanel;
+import UserInterface.ButtonSide.TravelOfficeBtnJPanel;
+
 /**
  *
  * @author gaomc
@@ -14,8 +20,28 @@ public class TravelAgencyMain extends javax.swing.JFrame {
     /**
      * Creates new form TravelAgencyMain
      */
-    public TravelAgencyMain() {
+    TravelAgency travelAgency;
+    UserAccount userAccount;
+    
+    TravelAgencyMain(TravelAgency travelAgency, UserAccount userAccount) {
         initComponents();
+        this.userAccount = userAccount;
+        this.travelAgency = travelAgency;
+        setButton(this.userAccount);
+    }
+    
+    public void setButton(UserAccount userAccount){
+        if(userAccount.getRole().equals("TravelAgency")){
+            System.out.print("ta");
+            TravelAgencyBtnJPanel travelAgencyBtn = new TravelAgencyBtnJPanel();
+            subJSplitPane2.setLeftComponent(travelAgencyBtn);
+        }else if(userAccount.getRole().equals("Airliner")){
+            AirlinerBtnJPanel airlinerBtnJPanel = new AirlinerBtnJPanel();
+            subJSplitPane2.setLeftComponent(airlinerBtnJPanel);
+        }else if(userAccount.getRole().equals("TravelOffice")){
+            TravelOfficeBtnJPanel travelOfficeBtnJPanel = new TravelOfficeBtnJPanel(userAccount,cardSequenceJPanel);
+            subJSplitPane2.setLeftComponent(travelOfficeBtnJPanel);
+        }
     }
 
     /**
@@ -31,12 +57,12 @@ public class TravelAgencyMain extends javax.swing.JFrame {
         mainJSplitPane = new javax.swing.JSplitPane();
         rightJPanel = new javax.swing.JPanel();
         subJSplitPane2 = new javax.swing.JSplitPane();
+        cardSequenceJPanel = new javax.swing.JPanel();
         btnJPanel = new javax.swing.JPanel();
-        CardSequenceJPanel = new javax.swing.JPanel();
         upJPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -51,16 +77,25 @@ public class TravelAgencyMain extends javax.swing.JFrame {
 
         subJSplitPane2.setDividerLocation(300);
 
-        btnJPanel.setBackground(new java.awt.Color(255, 255, 255));
-        btnJPanel.setMinimumSize(new java.awt.Dimension(370, 0));
-        btnJPanel.setPreferredSize(new java.awt.Dimension(370, 300));
-        btnJPanel.setLayout(new java.awt.CardLayout());
-        subJSplitPane2.setLeftComponent(btnJPanel);
+        cardSequenceJPanel.setBackground(new java.awt.Color(255, 255, 255));
+        cardSequenceJPanel.setPreferredSize(new java.awt.Dimension(1000, 200));
+        cardSequenceJPanel.setLayout(new java.awt.CardLayout());
+        subJSplitPane2.setRightComponent(cardSequenceJPanel);
 
-        CardSequenceJPanel.setBackground(new java.awt.Color(255, 255, 255));
-        CardSequenceJPanel.setPreferredSize(new java.awt.Dimension(1000, 200));
-        CardSequenceJPanel.setLayout(new java.awt.CardLayout());
-        subJSplitPane2.setRightComponent(CardSequenceJPanel);
+        btnJPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout btnJPanelLayout = new javax.swing.GroupLayout(btnJPanel);
+        btnJPanel.setLayout(btnJPanelLayout);
+        btnJPanelLayout.setHorizontalGroup(
+            btnJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        btnJPanelLayout.setVerticalGroup(
+            btnJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 483, Short.MAX_VALUE)
+        );
+
+        subJSplitPane2.setLeftComponent(btnJPanel);
 
         rightJPanel.add(subJSplitPane2, "card2");
 
@@ -79,8 +114,13 @@ public class TravelAgencyMain extends javax.swing.JFrame {
         jLabel1.setText("Travel Agency");
         upJPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
-        jButton3.setText("Logout");
-        upJPanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 40, -1, -1));
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        upJPanel.add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 40, -1, -1));
 
         mainJSplitPane.setLeftComponent(upJPanel);
 
@@ -103,48 +143,55 @@ public class TravelAgencyMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        LoginJFrame login = new LoginJFrame();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TravelAgencyMain().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(TravelAgencyMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new TravelAgencyMain(travelAgency).setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CardSequenceJPanel;
     private javax.swing.JPanel btnJPanel;
+    private javax.swing.JPanel cardSequenceJPanel;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JSplitPane mainJSplitPane;
     private javax.swing.JPanel rightJPanel;
     private javax.swing.JSplitPane subJSplitPane2;

@@ -23,9 +23,9 @@ public class UserAccountDirectory {
         return userAccountList;
     }
     
-    public UserAccount authenticateUser(String username, String password){
+    public UserAccount authenticateUser(String username, String password, String role){
         for (UserAccount ua : userAccountList)
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
+            if (ua.getUsername().equals(username) && ua.getPassword().equals(password) &&ua.getRole().equals(role)){
                 return ua;
             }
         return null;

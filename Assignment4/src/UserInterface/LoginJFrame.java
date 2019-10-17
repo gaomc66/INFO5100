@@ -5,6 +5,14 @@
  */
 package UserInterface;
 
+import Business.Business;
+import Business.Configuration;
+import Business.TravelAgency;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gaomc
@@ -14,9 +22,26 @@ public class LoginJFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginJFrame
      */
+    
+    private Business business;
+    private TravelAgency travelAgency;
+//    TravelAgencyMain travelAgencyMain;
+    
     public LoginJFrame() {
         initComponents();
+        userRoleComboBox.setModel(new DefaultComboBoxModel(new String[]{"TravelAgency","TravelOffice","Airliner"}));      
+        business = Configuration.configure();
+        travelAgency = business.getTravelAgencyDirectory().getTavelAgencyList().get(0);
+        
     }
+    
+    // after one logout, remain the defined travelAgencyMain and travelAgency
+    public LoginJFrame(TravelAgencyMain travelAgencyMain, TravelAgency travelAgency){
+        initComponents();
+        userRoleComboBox.setModel(new DefaultComboBoxModel(new String[]{"TravelAgency","TravelOffice","Airliner"}));      
+        this.travelAgency = travelAgency;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,9 +90,14 @@ public class LoginJFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, 30));
         jPanel1.add(userNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 160, -1));
 
-        passwordField.setText("jPasswordField1");
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
         jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 160, -1));
 
+        userRoleComboBox.setBackground(new java.awt.Color(255, 255, 255));
         userRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(userRoleComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, -1));
 
@@ -78,21 +108,51 @@ public class LoginJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-        TravelAgencyMain main = new TravelAgencyMain();
-        main.setVisible(true);
+        // TODO add your handling code here:        
+        userNameTextField.setEnabled(true);
+        passwordField.setEnabled(true);
+        
+        String userName = userNameTextField.getText();
+        String password = passwordField.getText();
+        String role = userRoleComboBox.getSelectedItem().toString();
+        
+        UserAccount userAccount = new UserAccount();
+        UserAccountDirectory userAccountDirectory = travelAgency.getUserAccountDirectory();
+        userAccount = userAccountDirectory.authenticateUser(userName, password,role);
+        
+        if(userAccount != null) {
+            userNameTextField.setEnabled(false);
+            passwordField.setEnabled(false);
+            showMainFram(travelAgency,userAccount);
+        }else{
+            JOptionPane.showMessageDialog(null, "Wrong Password or userName");
+        }              
     }//GEN-LAST:event_loginBtnActionPerformed
+ 
+    
+    private void showMainFram(TravelAgency travelAgency, UserAccount userAccount) {
+        TravelAgencyMain main = new TravelAgencyMain(travelAgency,userAccount);
+        main.setVisible(true);
+        this.dispose();    
+    }
+    
+    
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,4 +204,6 @@ public class LoginJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField userNameTextField;
     private javax.swing.JComboBox<String> userRoleComboBox;
     // End of variables declaration//GEN-END:variables
+
+
 }
