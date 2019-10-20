@@ -4,19 +4,49 @@
  */
 package UserInterface.TravelOffice;
 
+import Business.Ticket.Ticket;
+import Business.TravelOffice.Customer.Customer;
+import Business.TravelOffice.TravelOffice;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gaomc
  */
-public class ManagTicketJPanel extends javax.swing.JPanel {
+public class ManageTicketJPanel extends javax.swing.JPanel {
 
+    
+    private TravelOffice travelOffice;
+    private List<Ticket> ticketList;
     /**
      * Creates new form ManegePandingTicket
      */
-    public ManagTicketJPanel() {
+    public ManageTicketJPanel(TravelOffice travelOffice) {
         initComponents();
+        this.travelOffice = travelOffice;
+        this.ticketList = travelOffice.getTicketDirectory().getTicketList();
+        populate(this.ticketList);
+        
     }
 
+    public void populate(List<Ticket> ticketList){
+        DefaultTableModel dtm = (DefaultTableModel)ticketJTable.getModel();
+        dtm.setRowCount(0);
+        
+        ticketList.forEach((Ticket ticket) -> {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = ticket;
+            row[1] = ticket.getFlightNumber();
+            row[2] = ticket.getFlightInfo();
+            row[3] = ticket.getAirplaneInfo();
+            row[4] = ticket.getCustomerInfo();
+            row[5] = ticket.isPending();
+                    
+            dtm.addRow(row);
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,6 +89,11 @@ public class ManagTicketJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 240));
 
         checkPendingTicketBtn.setText("Check all Pending Ticket");
+        checkPendingTicketBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkPendingTicketBtnActionPerformed(evt);
+            }
+        });
         add(checkPendingTicketBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -77,6 +112,16 @@ public class ManagTicketJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void checkPendingTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPendingTicketBtnActionPerformed
+        // TODO add your handling code here:
+        List<Ticket> pendingTicket = 
+                this.ticketList.stream()
+                        .filter(ticket -> ticket.isPending() == true)
+                        .collect(Collectors.toList());
+                
+        populate(pendingTicket);
+    }//GEN-LAST:event_checkPendingTicketBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

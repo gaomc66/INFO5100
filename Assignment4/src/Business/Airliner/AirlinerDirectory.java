@@ -7,10 +7,7 @@ package Business.Airliner;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author gaomc
- */
+
 public class AirlinerDirectory {
     
     private ArrayList<Airliner> airlinerList;
@@ -23,8 +20,19 @@ public class AirlinerDirectory {
         return airlinerList;
     }
     
-    public Airliner createAirliner(){
+    public Airliner createAirliner(String name){
         Airliner airliner = new Airliner();
+        airliner.setName(name);
+        airlinerList.add(airliner);
         return airliner;
+    }
+    
+    public void addAirliner(Airliner airliner){
+        airlinerList.add(airliner);
+    }
+    
+    public boolean removeAirliner(Airliner airliner){
+        boolean success = airlinerList.remove(airliner);
+        return success;
     }
 }

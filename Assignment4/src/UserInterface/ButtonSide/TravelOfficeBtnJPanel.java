@@ -5,9 +5,12 @@
  */
 package UserInterface.ButtonSide;
 
+import Business.TravelAgency.TravelAgency;
 import Business.TravelOffice.TravelOffice;
 import Business.UserAccount.UserAccount;
+import UserInterface.TravelOffice.BookingTicketJPanel;
 import UserInterface.TravelOffice.ManageCustomerJPanel;
+import UserInterface.TravelOffice.ManageTicketJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -22,10 +25,11 @@ public class TravelOfficeBtnJPanel extends javax.swing.JPanel {
      */
     private TravelOffice travelOffice;
     private JPanel cardSequenceJPanel;
+    private TravelAgency travelAgency;
     
     public TravelOfficeBtnJPanel(UserAccount userAccount, JPanel cardSequenceJPanel) {
         initComponents();
-        
+        this.travelAgency = travelAgency;
         this.travelOffice = (TravelOffice) userAccount.getMember();
         this.cardSequenceJPanel = cardSequenceJPanel;
     }
@@ -41,9 +45,8 @@ public class TravelOfficeBtnJPanel extends javax.swing.JPanel {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         manageCustomerBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        customerComboBtn = new javax.swing.JComboBox<>();
+        bookTicketBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,18 +58,25 @@ public class TravelOfficeBtnJPanel extends javax.swing.JPanel {
                 manageCustomerBtnActionPerformed(evt);
             }
         });
-        add(manageCustomerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 99, -1, -1));
+        add(manageCustomerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Book Ticket for a Customer");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        bookTicketBtn.setBackground(new java.awt.Color(255, 255, 255));
+        bookTicketBtn.setText("Book Ticket for a Customer");
+        bookTicketBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookTicketBtnActionPerformed(evt);
+            }
+        });
+        add(bookTicketBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 100));
 
-        jLabel1.setText("// toMasterTravelSchedual");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
-
-        customerComboBtn.setBackground(new java.awt.Color(255, 255, 255));
-        customerComboBtn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(customerComboBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Manage Ticket");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerBtnActionPerformed
@@ -77,12 +87,27 @@ public class TravelOfficeBtnJPanel extends javax.swing.JPanel {
         layout.next(cardSequenceJPanel);
     }//GEN-LAST:event_manageCustomerBtnActionPerformed
 
+    private void bookTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketBtnActionPerformed
+        // TODO add your handling code here:
+        BookingTicketJPanel panel = new BookingTicketJPanel(cardSequenceJPanel, travelOffice);
+        cardSequenceJPanel.add(panel);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_bookTicketBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ManageTicketJPanel panel = new ManageTicketJPanel(travelOffice);
+        cardSequenceJPanel.add(panel);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookTicketBtn;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> customerComboBtn;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton manageCustomerBtn;
     // End of variables declaration//GEN-END:variables
 }

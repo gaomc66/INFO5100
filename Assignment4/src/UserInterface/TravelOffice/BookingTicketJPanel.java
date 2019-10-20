@@ -4,6 +4,18 @@
  */
 package UserInterface.TravelOffice;
 
+import Business.Airliner.Flight.Flight;
+import Business.MasterTravelSchedule;
+import Business.Ticket.TicketDirectory;
+import Business.TravelAgency.TravelAgency;
+import Business.TravelOffice.Customer.Customer;
+import Business.TravelOffice.TravelOffice;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gaomc
@@ -13,8 +25,52 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BookingTicket
      */
-    public BookingTicketJPanel() {
+    // Create TicketDirectory
+    private TicketDirectory ticketDirectory;
+    private JPanel cardSequenceJPanel;
+    
+    public BookingTicketJPanel(JPanel cardSequenceJPanel, TravelOffice travelOffice) {
         initComponents();
+        
+        populateCustomer(travelOffice.getCustomerDirectory().getCustomerList());
+//        populateFlight()
+        populateFlight(MasterTravelSchedule.getInstance().getAllFlightsOfAirliners());
+        System.out.println(MasterTravelSchedule.getInstance().getAllFlightsOfAirliners());
+        this.cardSequenceJPanel = cardSequenceJPanel;
+    }
+    
+    public void populateCustomer(List<Customer> customerList){
+        DefaultTableModel dtm = (DefaultTableModel)customerJTable.getModel();
+        dtm.setRowCount(0);
+        
+        customerList.forEach((Customer customer) -> {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = customer;
+            row[1] = customer.getId();
+            row[2] = customer.getIdentityType() + customer.getIdentityID();
+            row[3] = customer.getOfficeInfo();
+            row[4] = customer.getTicket();
+            
+            dtm.addRow(row);
+        });
+    }
+    
+    public void populateFlight(List<Flight> flightList){
+        DefaultTableModel dtm = (DefaultTableModel)flightJTable.getModel();
+        dtm.setRowCount(0);
+        
+        flightList.forEach((Flight flight) -> {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = flight;
+            row[1] = flight.getAirplane().getSerialNum();
+            row[2] = flight.getStartTime();
+            row[3] = flight.getDeparture();
+            row[4] = flight.getDestination();
+            row[5] = flight.getDate();
+            row[6] = flight.getSeatAssignment();
+            
+            dtm.addRow(row);
+        });
     }
 
     /**
@@ -28,11 +84,11 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        choseSeatBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        flightJTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        customerJTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         departLocationComBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -44,7 +100,6 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         dateTextField = new javax.swing.JTextField();
         customerNameJTextField = new javax.swing.JTextField();
-        jProgressBar1 = new javax.swing.JProgressBar();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -52,6 +107,7 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Search Customer by Name");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,63 +116,74 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Find Preferred Flight");
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 170, -1));
 
-        jButton3.setText("Submit Booking Requirement");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 250, -1));
+        choseSeatBtn.setBackground(new java.awt.Color(255, 255, 255));
+        choseSeatBtn.setText("Choose a Seat");
+        choseSeatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choseSeatBtnActionPerformed(evt);
+            }
+        });
+        add(choseSeatBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 250, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        flightJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Flight #", "Airplane #", "Time", "Departure", "Arrival", "Date", "SeatAssign"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(flightJTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 530, 90));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        customerJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Membership ID", "Identity ID", "Office Info", "Ticket Info"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(customerJTable);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 530, 90));
 
         jLabel3.setText("Departure:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
+        departLocationComBox.setBackground(new java.awt.Color(255, 255, 255));
         departLocationComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(departLocationComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
         jLabel4.setText("Arrival:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
+        departLocationComBox1.setBackground(new java.awt.Color(255, 255, 255));
         departLocationComBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(departLocationComBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         jLabel5.setText("Preferrence:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
+        departLocationComBox2.setBackground(new java.awt.Color(255, 255, 255));
         departLocationComBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(departLocationComBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         jLabel6.setText("Flight #:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, 20));
 
+        departLocationComBox3.setBackground(new java.awt.Color(255, 255, 255));
         departLocationComBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(departLocationComBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
@@ -130,8 +197,8 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         });
         add(dateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 120, -1));
         add(customerNameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 90, -1));
-        add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("not found? create a new file");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,17 +227,37 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void choseSeatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseSeatBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedFlight = flightJTable.getSelectedRow();   
+        int selectedCustomer = customerJTable.getSelectedRow();
+
+        if(selectedFlight < 0 || selectedCustomer<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!");
+        }else{
+            Flight flight = (Flight) flightJTable.getValueAt(selectedFlight, 0);
+            Customer customer = (Customer) customerJTable.getValueAt(selectedCustomer, 0);
+          
+            SelectSeatJPanel panel = new SelectSeatJPanel(flight, customer);
+            cardSequenceJPanel.add(panel);
+            CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+            layout.next(cardSequenceJPanel); 
+        }
+    }//GEN-LAST:event_choseSeatBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton choseSeatBtn;
+    private javax.swing.JTable customerJTable;
     private javax.swing.JTextField customerNameJTextField;
     private javax.swing.JTextField dateTextField;
     private javax.swing.JComboBox<String> departLocationComBox;
     private javax.swing.JComboBox<String> departLocationComBox1;
     private javax.swing.JComboBox<String> departLocationComBox2;
     private javax.swing.JComboBox<String> departLocationComBox3;
+    private javax.swing.JTable flightJTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -179,10 +266,7 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

@@ -57,16 +57,16 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(flightSchedJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 135, 440, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 440, 160));
 
         jLabel1.setText("Manage Flights");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 95, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         viewFlightBtn.setText("View Flight >>");
-        add(viewFlightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 475, -1, -1));
+        add(viewFlightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
 
         newFlightBtn.setText("New Flight >>");
-        add(newFlightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 435, -1, -1));
+        add(newFlightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

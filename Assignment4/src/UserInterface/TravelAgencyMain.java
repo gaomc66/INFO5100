@@ -5,7 +5,7 @@
  */
 package UserInterface;
 
-import Business.TravelAgency;
+import Business.TravelAgency.TravelAgency;
 import Business.UserAccount.UserAccount;
 import UserInterface.ButtonSide.AirlinerBtnJPanel;
 import UserInterface.ButtonSide.TravelAgencyBtnJPanel;

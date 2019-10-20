@@ -7,7 +7,7 @@ package UserInterface;
 
 import Business.Business;
 import Business.Configuration;
-import Business.TravelAgency;
+import Business.TravelAgency.TravelAgency;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import javax.swing.DefaultComboBoxModel;

@@ -5,15 +5,18 @@
  */
 package Business.TravelOffice;
 
+import Business.TravelAgency.TravelAgency;
 import java.awt.List;
 import java.util.ArrayList;
 
 public class TravelOfficeDirectory {
     
     private ArrayList<TravelOffice> travelOfficeList;
+    private TravelAgency travelAgency;
     
-    public TravelOfficeDirectory(){
+    public TravelOfficeDirectory(TravelAgency travelAgency){
         travelOfficeList = new ArrayList<>();
+        this.travelAgency = travelAgency;
     }
     
     public ArrayList<TravelOffice> getTravelOfficList(){
@@ -21,8 +24,12 @@ public class TravelOfficeDirectory {
     }
     
     public TravelOffice createTravelOffice(){
-        TravelOffice travelOffice = new TravelOffice();
+        TravelOffice travelOffice = new TravelOffice(this.travelAgency);
         return travelOffice;
+    }
+    
+    public boolean removeTravelOffice(TravelOffice to){
+        return travelOfficeList.remove(to);
     }
     
 }

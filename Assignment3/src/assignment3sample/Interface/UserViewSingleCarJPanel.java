@@ -41,7 +41,7 @@ public class UserViewSingleCarJPanel extends javax.swing.JPanel {
             certValidRadioBtn.setSelected(false);
             certExpRadioBtn.setSelected(true);
         } 
-        
+       
     }
 
     /**

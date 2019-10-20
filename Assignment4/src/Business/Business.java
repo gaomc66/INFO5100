@@ -4,6 +4,8 @@
  */
 package Business;
 
+import Business.TravelAgency.TravelAgencyDirectory;
+
 public class Business {
     
     private static Business superAdmin;
