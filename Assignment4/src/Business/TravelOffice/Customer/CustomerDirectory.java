@@ -27,4 +27,8 @@ public class CustomerDirectory {
     public List<Customer> getCustomerList(){
         return customerList;
     }
+    
+    public int getCustomerNum(){
+        return customerList.size();
+    }
 }

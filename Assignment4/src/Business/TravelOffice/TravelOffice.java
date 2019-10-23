@@ -5,9 +5,17 @@
  */
 package Business.TravelOffice;
 
-import Business.Ticket.TicketDirecotry;
+import Business.Airliner.Airliner;
+import Business.Airliner.Flight.Flight;
+import Business.Airliner.Flight.FlightSchedual;
+import Business.Ticket.Ticket;
+import Business.Ticket.TicketDirectory;
+import Business.TravelAgency.TravelAgency;
 import Business.TravelOffice.Customer.*;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TravelOffice {
     // Attributes of TravelOffice
@@ -17,18 +25,23 @@ public class TravelOffice {
     private boolean hasPendingTicket;
     // Includes customerDirectory
     private CustomerDirectory customerDirectory;
-    private TicketDirecotry ticketDirectory;
+    private FlightSchedual flightSchedule;
+    private TicketDirectory ticketDirectory;
+   
     
     private UserAccount userAccount;
+    
+    private TravelAgency travelAgency;
     
     // Have the function of generate pending ticket
     
     
-    public TravelOffice(){
+    public TravelOffice(TravelAgency travelAgency){
         id = Integer.toString(count);
-        count ++;
-        
+        count ++;       
         this.customerDirectory = new CustomerDirectory(this);
+        this.travelAgency = travelAgency;
+        this.ticketDirectory = new TicketDirectory(this);
     }
     
     public void setUserAccount(){
@@ -50,6 +63,29 @@ public class TravelOffice {
     public CustomerDirectory getCustomerDirectory() {
         return customerDirectory;
     }
+
+    public TicketDirectory getTicketDirectory() {
+        return ticketDirectory;
+    }
+    
+    public List<Flight> getFlightList(){
+        List<Airliner> airlinerList = this.travelAgency.getAirlinerDirectory().getAirlinerList();
+        List<Flight> allFlightList = new ArrayList<>();
+        for(Airliner airliner : airlinerList){
+            allFlightList.addAll(airliner.getFlightSchedual().getFlghtList());
+        }
+        return allFlightList;
+    }
+    
+    public List<Ticket> getPendingTicket(){
+        return this.ticketDirectory.getTicketList().stream()
+                .filter(ticket -> ticket.isPending() == true)
+                .collect(Collectors.toList());
+    }
    
+    @Override
+    public String toString(){
+        return id;
+    }
     
 }

@@ -2,7 +2,7 @@
  * HappyLamb - TravelAgencySystem
  * Each line should be prefixed with  * 
  */
-package Business;
+package Business.TravelAgency;
 
 import java.util.ArrayList;
 

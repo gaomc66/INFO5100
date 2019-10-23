@@ -5,6 +5,15 @@
  */
 package UserInterface.ButtonSide;
 
+import Business.Airliner.AirlinerDirectory;
+import Business.TravelAgency.TravelAgency;
+import UserInterface.TravelAgency.ManageAirlinerJPanel;
+import UserInterface.TravelAgency.ManageMasterTravelSchedulJPanel;
+import UserInterface.TravelAgency.ManageTravelOfficeJPanel;
+//import UserInterface.TravelAgency.ManageTravelOfficeJPanel;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author gaomc
@@ -14,9 +23,14 @@ public class TravelAgencyBtnJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AirlinerBtn
      */
-    public TravelAgencyBtnJPanel() {
-        //jhghj
+    private TravelAgency travelAgency;
+    private JPanel cardSequenceJPanel;
+    
+    
+    public TravelAgencyBtnJPanel(TravelAgency travelAgency,JPanel cardSequenceJPanel) {
         initComponents();
+        this.travelAgency = travelAgency;
+        this.cardSequenceJPanel = cardSequenceJPanel;
     }
 
     /**
@@ -40,6 +54,11 @@ public class TravelAgencyBtnJPanel extends javax.swing.JPanel {
 
         manageAirlinerBtn.setBackground(new java.awt.Color(255, 255, 255));
         manageAirlinerBtn.setText("Manage Airliners");
+        manageAirlinerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageAirlinerBtnActionPerformed(evt);
+            }
+        });
         add(manageAirlinerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 151, -1, -1));
 
         jLabel1.setText("// -> ManageAirlinerJPanel");
@@ -47,6 +66,11 @@ public class TravelAgencyBtnJPanel extends javax.swing.JPanel {
 
         searchBtn.setBackground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
         add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jLabel2.setText("// -> ManageMasterFlightSchedualJPanel");
@@ -66,8 +90,28 @@ public class TravelAgencyBtnJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageTavelOfficBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTavelOfficBtnActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
+        ManageTravelOfficeJPanel manageTO = new ManageTravelOfficeJPanel(travelAgency, cardSequenceJPanel);
+        cardSequenceJPanel.add(manageTO);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
     }//GEN-LAST:event_manageTavelOfficBtnActionPerformed
+
+    private void manageAirlinerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAirlinerBtnActionPerformed
+        // TODO add your handling code here:
+        ManageAirlinerJPanel manaAirliner = new ManageAirlinerJPanel(travelAgency,cardSequenceJPanel);
+        cardSequenceJPanel.add(manaAirliner);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_manageAirlinerBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        ManageMasterTravelSchedulJPanel jPanel = new ManageMasterTravelSchedulJPanel(travelAgency,cardSequenceJPanel);
+        cardSequenceJPanel.add(jPanel);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_searchBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

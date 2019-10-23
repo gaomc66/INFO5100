@@ -5,7 +5,7 @@
  */
 package UserInterface;
 
-import Business.TravelAgency;
+import Business.TravelAgency.TravelAgency;
 import Business.UserAccount.UserAccount;
 import UserInterface.ButtonSide.AirlinerBtnJPanel;
 import UserInterface.ButtonSide.TravelAgencyBtnJPanel;
@@ -33,10 +33,10 @@ public class TravelAgencyMain extends javax.swing.JFrame {
     public void setButton(UserAccount userAccount){
         if(userAccount.getRole().equals("TravelAgency")){
             System.out.print("ta");
-            TravelAgencyBtnJPanel travelAgencyBtn = new TravelAgencyBtnJPanel();
+            TravelAgencyBtnJPanel travelAgencyBtn = new TravelAgencyBtnJPanel(travelAgency,cardSequenceJPanel);
             subJSplitPane2.setLeftComponent(travelAgencyBtn);
         }else if(userAccount.getRole().equals("Airliner")){
-            AirlinerBtnJPanel airlinerBtnJPanel = new AirlinerBtnJPanel();
+            AirlinerBtnJPanel airlinerBtnJPanel = new AirlinerBtnJPanel(userAccount,cardSequenceJPanel);
             subJSplitPane2.setLeftComponent(airlinerBtnJPanel);
         }else if(userAccount.getRole().equals("TravelOffice")){
             TravelOfficeBtnJPanel travelOfficeBtnJPanel = new TravelOfficeBtnJPanel(userAccount,cardSequenceJPanel);

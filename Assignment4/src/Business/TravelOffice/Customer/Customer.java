@@ -19,7 +19,8 @@ public class Customer {
     private String id;
     private static int count = 0;
     private String name;
-    private String identityInfo;
+    private String identityType;
+    private String identityID;
     private String officeInfo;
     private boolean gotTicket = false;
     // ticket.getAssignedSeat(this.id)
@@ -32,13 +33,22 @@ public class Customer {
         System.out.println(officeInfo);
     }
 
-    public String getIdentityInfo() {
-        return identityInfo;
+    public String getIdentityType() {
+        return identityType;
     }
 
-    public void setIdentityInfo(String identityInfo) {
-        this.identityInfo = identityInfo;
+    public void setIdentityType(String identityType) {
+        this.identityType = identityType;
     }
+
+    public String getIdentityID() {
+        return identityID;
+    }
+
+    public void setIdentityID(String identityID) {
+        this.identityID = identityID;
+    }
+    
     
     public Ticket getTicket() {
         return ticket;
