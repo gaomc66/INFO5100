@@ -10,6 +10,7 @@ import Business.Airliner.Flight.Flight;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This is a singlton class, which store all the airliners for searching the flights.
@@ -54,17 +55,17 @@ public class MasterTravelSchedule {
      * @param flightNo
      * @return the exact flight object whose flight number is the same as the input flightNo
      */
-    public Flight searchFlightsByFlightNum(String flightNo){
-        Flight foundedFl = null;
+    public List<Flight> searchFlightsByFlightNum(String flightNo){
+        List<Flight> searchedFligh = new ArrayList<Flight>();
         List<Flight> allFlights = getAllFlightsOfAirliners();
         for(Flight fl : allFlights){
             if(fl.getFlightNo().equals(flightNo)){
-                foundedFl = fl;
+                searchedFligh.add(fl);
                 break;
             }
         }
         
-        return foundedFl;
+        return searchedFligh;
     }
     
     /**
@@ -72,10 +73,9 @@ public class MasterTravelSchedule {
      * @param departLocation
      * @return a list of flight
      */
-    public List<Flight> searchFlightByDeparture(String departLocation){
+    public List<Flight> searchFlightByDeparture(List<Flight> searchList, String departLocation){
         List<Flight> foundedFlights = new ArrayList<Flight>();
-        List<Flight> allFlights = getAllFlightsOfAirliners();
-        for(Flight fl : allFlights){
+        for(Flight fl : searchList){
             if(fl.getDeparture().equals(departLocation)){
                 foundedFlights.add(fl);
             }
@@ -85,13 +85,13 @@ public class MasterTravelSchedule {
     
     /**
      * Search all the flights by arrive location
+     * @param searchList
      * @param arriveLocation
      * @return a list of flight  
      */
-    public List<Flight> searchFlightByArrival(String arriveLocation){
+    public List<Flight> searchFlightByArrival(List<Flight> searchList, String arriveLocation){
         List<Flight> foundedFlights = new ArrayList<Flight>();
-        List<Flight> allFlights = getAllFlightsOfAirliners();
-        for(Flight fl : allFlights){
+        for(Flight fl : searchList){
             if(fl.getDestination().equals(arriveLocation)){
                 foundedFlights.add(fl);
             }
@@ -99,6 +99,7 @@ public class MasterTravelSchedule {
         return foundedFlights;
     }
     
+
     /**
      * Search all the flights by time range(morning,evening or daytime)
      * morning: 05:00 - 9:59
@@ -107,26 +108,25 @@ public class MasterTravelSchedule {
      * @param timeRange("morning","evening" or "daytime")
      * @return a list of flight  
      */
-    public List<Flight> searchFlightByTimeRange(String timeRange){
+    public List<Flight> searchFlightByTimeRange(List<Flight> searchList, String timeRange){
         List<Flight> foundedFlights = new ArrayList<Flight>();
-        List<Flight> allFlights = getAllFlightsOfAirliners();
-        for(Flight fl : allFlights){
-            if(fl.getStartTimeRange().equals(timeRange)){
+        for(Flight fl : searchList){
+            if(fl.getStartTimeRange().equalsIgnoreCase(timeRange)){
                 foundedFlights.add(fl);
             }
         }    
         return foundedFlights;
     }
     
+  
     /**
      * Search all the flights by date
      * @param date
      * @return a list of flights
      */
-    public List<Flight> searchFlightByTimeRange(LocalDate date){
+    public List<Flight> searchFlightByDate(List<Flight> searchList, String date){
         List<Flight> foundedFlights = new ArrayList<Flight>();
-        List<Flight> allFlights = getAllFlightsOfAirliners();
-        for(Flight fl : allFlights){
+        for(Flight fl : searchList){
             if(fl.getDate().equals(date)){
                 foundedFlights.add(fl);
             }
@@ -140,16 +140,13 @@ public class MasterTravelSchedule {
      */
     public List<Flight> getAllFlightsOfAirliners(){
         List<Flight> allFlights = new ArrayList<Flight>();
-        System.out.println("666" );
+//        System.out.println("666" );
 
         for(Airliner al : airlinerDir.getAirlinerList()){
-            System.out.println("al" );
+//            System.out.println("al" );
             for(Flight fl : al.getFlightSchedual().getFlghtList())
                 allFlights.add(fl);
-        }
-        
-        
-        
+        }        
         return allFlights;
     }
     

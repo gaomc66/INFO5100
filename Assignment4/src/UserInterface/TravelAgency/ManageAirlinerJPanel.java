@@ -5,6 +5,15 @@
  */
 package UserInterface.TravelAgency;
 
+import Business.Airliner.Airliner;
+import Business.Airliner.AirlinerDirectory;
+import Business.TravelAgency.TravelAgency;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gaomc
@@ -14,8 +23,31 @@ public class ManageAirlinerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageAirlineJPanel
      */
-    public ManageAirlinerJPanel() {
+    private TravelAgency travelAgency;
+    private JPanel cardSequenceJPanel;
+    public ManageAirlinerJPanel(TravelAgency travelAgency, JPanel cardSequenceJPanel) {
         initComponents();
+        this.travelAgency = travelAgency;
+        this.cardSequenceJPanel = cardSequenceJPanel;
+        populate();
+    }
+    
+    public void populate(){
+        List<Airliner> airlinerList = travelAgency.getAirlinerDirectory().getAirlinerList();
+        DefaultTableModel dtm = (DefaultTableModel)airlineJTable.getModel();
+        dtm.setRowCount(0);
+        
+        for(Airliner al : airlinerList){
+            Object[] row = new Object[airlineJTable.getColumnCount()];
+            row[0] = al;
+            row[1] = al.getName();
+            row[2] = al.getAirplaneNum();
+            row[3] = al.getFlightsNum();
+            
+            dtm.addRow(row);
+        }
+       
+        
     }
 
     /**
@@ -34,6 +66,7 @@ public class ManageAirlinerJPanel extends javax.swing.JPanel {
         newAirLBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        deletejButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -46,7 +79,7 @@ public class ManageAirlinerJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Airlines"
+                "index", "name", "plane number", "flight number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -59,27 +92,81 @@ public class ManageAirlinerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(airlineJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 440, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 440, 160));
 
         jLabel1.setText("Manage Airliners");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         viewAirLBtn.setText("View AirLiner >>");
-        add(viewAirLBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
+        viewAirLBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAirLBtnActionPerformed(evt);
+            }
+        });
+        add(viewAirLBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
 
         newAirLBtn.setText("New AirLiner >>");
-        add(newAirLBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, -1, -1));
+        newAirLBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newAirLBtnActionPerformed(evt);
+            }
+        });
+        add(newAirLBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 150, -1));
 
         jLabel2.setText("// CardSequenceJPane;");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
 
         jLabel3.setText("// input: travel Agency");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+
+        deletejButton.setText("Delete Airliner");
+        deletejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletejButtonActionPerformed(evt);
+            }
+        });
+        add(deletejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletejButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = this.airlineJTable.getSelectedRow();
+        if(selectedRow <0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            Airliner airliner = (Airliner)this.airlineJTable.getValueAt(selectedRow, 0);
+            travelAgency.removeAirliner(airliner);
+            populate();
+            JOptionPane.showMessageDialog(null, "Delete successfully!");
+        }
+    }//GEN-LAST:event_deletejButtonActionPerformed
+
+    private void viewAirLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAirLBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = this.airlineJTable.getSelectedRow();
+        if(selectedRow <0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            Airliner airliner = (Airliner)this.airlineJTable.getValueAt(selectedRow, 0);
+            ViewAirLinerJPanel view = new ViewAirLinerJPanel(airliner, cardSequenceJPanel);
+            cardSequenceJPanel.add(view);
+            CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+            layout.next(cardSequenceJPanel);
+        }
+    }//GEN-LAST:event_viewAirLBtnActionPerformed
+
+    private void newAirLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAirLBtnActionPerformed
+        // TODO add your handling code here:
+        NewAirlinerJPanel newPanel = new NewAirlinerJPanel(travelAgency, cardSequenceJPanel);
+        cardSequenceJPanel.add(newPanel);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_newAirLBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable airlineJTable;
+    private javax.swing.JButton deletejButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

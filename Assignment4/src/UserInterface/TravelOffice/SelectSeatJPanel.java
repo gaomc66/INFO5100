@@ -5,12 +5,18 @@
 package UserInterface.TravelOffice;
 
 import Business.Airliner.Flight.Flight;
+import Business.Ticket.Ticket;
 import Business.TravelOffice.Customer.Customer;
+import Business.TravelOffice.TravelOffice;
+import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,13 +26,19 @@ public class SelectSeatJPanel extends javax.swing.JPanel {
 
     private Flight flight;
     private Customer customer;
+    private TravelOffice travelOffice;
+    private JPanel cardSequenceJPanel;
     
-    SelectSeatJPanel(Flight flight, Customer customer) {
+    SelectSeatJPanel(JPanel cardSequenceJPanel,Flight flight, Customer customer, TravelOffice travelOffice) {
         initComponents();
         this.flight = flight;
         this.customer = customer;
-        SeatNumberComBox.setModel(new DefaultComboBoxModel(this.flight.getAvaliableSeat().toArray()));
-        
+        this.travelOffice = travelOffice;
+        this.cardSequenceJPanel = cardSequenceJPanel;
+        List<String> flightSort = this.flight.getAvaliableSeat();
+        Collections.sort(flightSort);
+        SeatNumberComBox.setModel(new DefaultComboBoxModel(flightSort.toArray()));
+
     }
 
     /**
@@ -83,9 +95,18 @@ public class SelectSeatJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         String selectedSeat = SeatNumberComBox.getSelectedItem().toString();
-        this.flight.SeatAssignment(customer, selectedSeat);
-       
         
+//        if(flight.getSeatAssignment().values() != null){
+//                JOptionPane.showMessageDialog(null, "Seat Unavaliable!");
+//        }else{
+            this.flight.SeatAssignment(customer, selectedSeat);
+        
+        Ticket ticket = new Ticket
+            (this.flight,this.customer,SeatNumberComBox.getSelectedItem().toString(),this.travelOffice.getId());
+            ticket.setPending(true);
+            travelOffice.getTicketDirectory().getTicketList().add(ticket);
+            JOptionPane.showMessageDialog(null, "Ticket booked!");
+//        }
     }//GEN-LAST:event_bookTicketBtnActionPerformed
 
     private void SeatNumberComBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeatNumberComBoxActionPerformed
@@ -94,6 +115,9 @@ public class SelectSeatJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_backBtnActionPerformed
 
 

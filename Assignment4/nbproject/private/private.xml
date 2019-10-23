@@ -3,39 +3,43 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelAgency.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/ManageCustomerJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Business.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/CreateNewAirlinerJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/LoginJFrame.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/UserAccount/UserAccountDirectory.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/UserAccount/UserAccount.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelOffice/TravelOffice.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/CreateCustomerJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/ButtonSide/TravelOfficeBtnJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelOffice/Customer/Customer.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Airliner.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Flight/FlightSchedual.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/Airliner/FlightFoundJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/Airliner/ManageAirlinerFlightScheduleJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Fleet/AirplaneDirectory.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelOffice/TravelOfficeDirectory.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/ViewCustomerJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Configuration.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Ticket/Ticket.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/Airliner/FlightDetailJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ViewAirLinerJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Flight/Flight.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ManageAirlinerJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ManageMasterTravelSchedulJPanel.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelOffice/Customer/CustomerDirectory.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelAgencyDirectory.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgencyMain.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/AirlinerDirectory.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/BookingTicketJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ManageTravelOfficeJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelAgency/TravelAgency.java</file>
             <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Fleet/Airplane.java</file>
-            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/ManagTicketJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/ManageTicketJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/Airliner/ManageFlightJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/SelectSeatJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Airliner.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Fleet/AirplaneDirectory.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/MasterTravelSchedule.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ViewAirLinerJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/NewAirlinerJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgencyMain.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/ButtonSide/TravelAgencyBtnJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Business.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ManageAirlinerJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelOffice/TravelOffice.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Configuration.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/ManageCustomerJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/Airliner/CreateNewFlight.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/Airliner/FlightDetailJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Ticket/Ticket.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ManageMasterTravelSchedulJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/ViewCustomerJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelOffice/TravelOfficeDirectory.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/NewTravelOfficeJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/BookingTicketJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Flight/Flight.java</file>
             <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Ticket/TicketDirectory.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/LoginJFrame.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/ButtonSide/AirlinerBtnJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/Flight/FlightSchedual.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/ButtonSide/TravelOfficeBtnJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/handlePendingTicketsJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/Airliner/AirlinerDirectory.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelAgency/ViewTravelOfficeJPanel.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/Business/TravelAgency/TravelAgencyDirectory.java</file>
+            <file>file:/Users/gaomc/code/INFO5100/INFO5100/Assignment4/src/UserInterface/TravelOffice/CreateCustomerJPanel.java</file>
         </group>
     </open-files>
 </project-private>

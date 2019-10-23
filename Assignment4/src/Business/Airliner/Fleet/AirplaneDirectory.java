@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class AirplaneDirectory {
     private ArrayList<Airplane> airplaneList;
     private Airplane airplane;
+    
     public AirplaneDirectory(){
         this.airplaneList = new ArrayList<Airplane>();
 

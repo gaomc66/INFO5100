@@ -88,10 +88,16 @@ public class Ticket {
     public String getFlightNumber() {
         return flight.getFlightNo();
     }
+    
+    public Flight getFlight(){
+        return flight;
+    }
 
     @Override
     public String toString(){
-        return flightNumber;
+        return ticketNumber;
     }
-    
+    public String getAirlinerName(){
+        return flight.getAirliner().getName();
+    }
 }

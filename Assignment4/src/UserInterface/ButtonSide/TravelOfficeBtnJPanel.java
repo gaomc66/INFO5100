@@ -97,7 +97,7 @@ public class TravelOfficeBtnJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ManageTicketJPanel panel = new ManageTicketJPanel(travelOffice);
+        ManageTicketJPanel panel = new ManageTicketJPanel(cardSequenceJPanel,travelOffice);
         cardSequenceJPanel.add(panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);

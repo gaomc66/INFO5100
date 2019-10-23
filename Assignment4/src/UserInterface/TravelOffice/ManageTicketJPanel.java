@@ -7,8 +7,10 @@ package UserInterface.TravelOffice;
 import Business.Ticket.Ticket;
 import Business.TravelOffice.Customer.Customer;
 import Business.TravelOffice.TravelOffice;
+import java.awt.CardLayout;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,12 +22,14 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
     
     private TravelOffice travelOffice;
     private List<Ticket> ticketList;
+    JPanel cardSequenceJPanel;
     /**
      * Creates new form ManegePandingTicket
      */
-    public ManageTicketJPanel(TravelOffice travelOffice) {
+    public ManageTicketJPanel(JPanel cardSequenceJPanel, TravelOffice travelOffice) {
         initComponents();
         this.travelOffice = travelOffice;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.ticketList = travelOffice.getTicketDirectory().getTicketList();
         populate(this.ticketList);
         
@@ -39,10 +43,11 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = ticket;
             row[1] = ticket.getFlightNumber();
-            row[2] = ticket.getFlightInfo();
-            row[3] = ticket.getAirplaneInfo();
-            row[4] = ticket.getCustomerInfo();
-            row[5] = ticket.isPending();
+            row[2] = ticket.getSeatInfo();
+            row[3] = ticket.getFlight().getDate().toString();
+            row[4] = ticket.getAirplaneInfo();
+            row[5] = ticket.getCustomerInfo();
+            row[6] = ticket.isPending();
                     
             dtm.addRow(row);
         });
@@ -67,17 +72,17 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
 
         ticketJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ticket #", "Flight", "Date", "Airliner", "Customer", "Pending"
+                "Ticket #", "Flight", "Seat #", "Date", "Airliner", "Customer", "Pending"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -86,7 +91,7 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ticketJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 660, 240));
 
         checkPendingTicketBtn.setText("Check all Pending Ticket");
         checkPendingTicketBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +116,9 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void checkPendingTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPendingTicketBtnActionPerformed

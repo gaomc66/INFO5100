@@ -25,6 +25,7 @@ public class TravelOfficeDirectory {
     
     public TravelOffice createTravelOffice(){
         TravelOffice travelOffice = new TravelOffice(this.travelAgency);
+        travelOfficeList.add(travelOffice);
         return travelOffice;
     }
     

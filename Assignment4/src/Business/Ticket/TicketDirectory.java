@@ -25,5 +25,4 @@ public class TicketDirectory {
         return this.ticketList;
     }
    
-    
 }

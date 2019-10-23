@@ -83,5 +83,9 @@ public class TravelOffice {
                 .collect(Collectors.toList());
     }
    
+    @Override
+    public String toString(){
+        return id;
+    }
     
 }

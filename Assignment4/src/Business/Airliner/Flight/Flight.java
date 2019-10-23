@@ -53,6 +53,8 @@ public class Flight {
         this.airplane = airplane;
         setSeatMap();
     }
+    
+    
     public Flight(Airliner airliner,String flightNo,Airplane airplane,String departure,String destination,Date date,LocalTime startTime,LocalTime arriveTime,double price){
         this.airliner = airliner;
         this.flightNo = flightNo;
@@ -65,6 +67,10 @@ public class Flight {
         this.price = price;
         this.startTimeRange = getTimeRange(startTime);
         setSeatMap();
+    }
+
+    public Flight() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void setSeatMap(){
@@ -103,6 +109,8 @@ public class Flight {
         for(Map.Entry<String, Customer> entry: s) {
             avaliableSeat.add(entry.getKey());
         }
+        
+        System.out.println(avaliableSeat.toArray());
         
         return avaliableSeat;
     }

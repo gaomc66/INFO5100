@@ -134,5 +134,37 @@ public class TravelAgency {
         return deletedTO;
     }
     
+    /**
+     * 
+     */
+    public boolean isAirlinerNameDuplicated(String name){
+        boolean isDuplicate = false;
+        for(Airliner airliner : airlinerDirectory.getAirlinerList()){
+            if(airliner.getName().equals(name)){
+                isDuplicate = true;
+            }
+        }
+        return isDuplicate;
+    }
+    
+    public boolean isUserNameDuplicated(String username){
+        boolean isDuplicate = false;
+        for(UserAccount userAccount : userAccountDirectory.getUserAccountList()){
+            if(userAccount.getUsername().equals(username)){
+                isDuplicate = true;
+            }
+        }
+        return isDuplicate;
+    }
+    
+    public boolean isTravelOfficeNameDuplicated(String name){
+        boolean isDuplicate = false;
+        for(TravelOffice to : travelOfficeDirectory.getTravelOfficList()){
+            if(to.getName().equals(name)){
+                isDuplicate = true;
+            }
+        }
+        return isDuplicate;
+    }
 
 }

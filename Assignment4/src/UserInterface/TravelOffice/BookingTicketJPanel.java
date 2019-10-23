@@ -4,6 +4,7 @@
  */
 package UserInterface.TravelOffice;
 
+import Business.Airliner.Airliner;
 import Business.Airliner.Flight.Flight;
 import Business.MasterTravelSchedule;
 import Business.Ticket.TicketDirectory;
@@ -11,7 +12,11 @@ import Business.TravelAgency.TravelAgency;
 import Business.TravelOffice.Customer.Customer;
 import Business.TravelOffice.TravelOffice;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -28,16 +33,67 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
     // Create TicketDirectory
     private TicketDirectory ticketDirectory;
     private JPanel cardSequenceJPanel;
+    private TravelOffice travelOffice;
+    private List<Flight> allFlightList;
     
     public BookingTicketJPanel(JPanel cardSequenceJPanel, TravelOffice travelOffice) {
         initComponents();
+        this.travelOffice = travelOffice;
         
+        this.allFlightList = MasterTravelSchedule.getInstance().getAllFlightsOfAirliners();
         populateCustomer(travelOffice.getCustomerDirectory().getCustomerList());
 //        populateFlight()
-        populateFlight(MasterTravelSchedule.getInstance().getAllFlightsOfAirliners());
-        System.out.println(MasterTravelSchedule.getInstance().getAllFlightsOfAirliners());
+        populateFlight(allFlightList);
+        
+//        System.out.println(MasterTravelSchedule.getInstance().getAllFlightsOfAirliners());
         this.cardSequenceJPanel = cardSequenceJPanel;
+        
+        
+        flightCombox.setModel(new DefaultComboBoxModel(allFlightList.toArray())); 
+        
+        List<String> departureList = new ArrayList<>();
+        List<String> tempListD = new ArrayList<>();
+        allFlightList.forEach(flight ->{
+                    tempListD.add(flight.getDeparture());});
+        Set<String> tempSet = tempListD.stream()
+                .collect(Collectors.toSet());
+        tempSet.forEach(a -> {
+            departureList.add(a);
+        });
+        
+        
+        departLocationComBox.setModel(new DefaultComboBoxModel(departureList.toArray())); 
+        
+        List<String> arraivalList = new ArrayList<>();
+        List<String> tempListA = new ArrayList<>();
+        allFlightList.forEach(flight ->{
+                    tempListA.add(flight.getDestination());});
+        Set<String> tempSetA = tempListA.stream()
+                .collect(Collectors.toSet());
+        tempSetA.forEach(a -> {
+            arraivalList.add(a);
+        });
+        
+        ArrivalLocationComBox1.setModel(new DefaultComboBoxModel(arraivalList.toArray())); 
+        
+         List<String> dateList = new ArrayList<>();
+        List<String> tempListDate = new ArrayList<>();
+        allFlightList.forEach(flight ->{
+                    tempListDate.add(flight.getDate());});
+        Set<String> tempSetDate = tempListDate.stream()
+                .collect(Collectors.toSet());
+        tempSetDate.forEach(a -> {
+            dateList.add(a);
+        });
+        
+        dataComBox.setModel(new DefaultComboBoxModel(dateList.toArray())); 
+        
+        
+        preferrenceComBox.setModel(new DefaultComboBoxModel(new String[]{"Morning","DayTime","Evening"}));
     }
+    
+   
+    
     
     public void populateCustomer(List<Customer> customerList){
         DefaultTableModel dtm = (DefaultTableModel)customerJTable.getModel();
@@ -82,8 +138,7 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        findPreferBtn = new javax.swing.JButton();
         choseSeatBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         flightJTable = new javax.swing.JTable();
@@ -92,33 +147,35 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         departLocationComBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        departLocationComBox1 = new javax.swing.JComboBox<>();
+        ArrivalLocationComBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        departLocationComBox2 = new javax.swing.JComboBox<>();
+        preferrenceComBox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        departLocationComBox3 = new javax.swing.JComboBox<>();
+        flightCombox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        dateTextField = new javax.swing.JTextField();
-        customerNameJTextField = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        dataComBox = new javax.swing.JComboBox<>();
+        dateRadioBtn = new javax.swing.JRadioButton();
+        flightRadioBtn = new javax.swing.JRadioButton();
+        flightSearchRedio2 = new javax.swing.JRadioButton();
+        departureRadioBtn = new javax.swing.JRadioButton();
+        PreRadioBtn = new javax.swing.JRadioButton();
+        ArrivalRadioBtn = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Search Customer by Name");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        findPreferBtn.setBackground(new java.awt.Color(255, 255, 255));
+        findPreferBtn.setText("Find Preferred Flight");
+        findPreferBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                findPreferBtnActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Find Preferred Flight");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 170, -1));
+        add(findPreferBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 170, -1));
 
         choseSeatBtn.setBackground(new java.awt.Color(255, 255, 255));
         choseSeatBtn.setText("Choose a Seat");
@@ -127,7 +184,7 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
                 choseSeatBtnActionPerformed(evt);
             }
         });
-        add(choseSeatBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 250, -1));
+        add(choseSeatBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 250, -1));
 
         flightJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,43 +217,35 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 530, 90));
 
         jLabel3.setText("Departure:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
 
         departLocationComBox.setBackground(new java.awt.Color(255, 255, 255));
         departLocationComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(departLocationComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+        add(departLocationComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
         jLabel4.setText("Arrival:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
 
-        departLocationComBox1.setBackground(new java.awt.Color(255, 255, 255));
-        departLocationComBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(departLocationComBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
+        ArrivalLocationComBox1.setBackground(new java.awt.Color(255, 255, 255));
+        ArrivalLocationComBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(ArrivalLocationComBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
         jLabel5.setText("Preferrence:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
-        departLocationComBox2.setBackground(new java.awt.Color(255, 255, 255));
-        departLocationComBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(departLocationComBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+        preferrenceComBox.setBackground(new java.awt.Color(255, 255, 255));
+        preferrenceComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(preferrenceComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
 
         jLabel6.setText("Flight #:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, 20));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, 20));
 
-        departLocationComBox3.setBackground(new java.awt.Color(255, 255, 255));
-        departLocationComBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(departLocationComBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        flightCombox.setBackground(new java.awt.Color(255, 255, 255));
+        flightCombox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(flightCombox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
         jLabel7.setText("Date:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, 30));
-
-        dateTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateTextFieldActionPerformed(evt);
-            }
-        });
-        add(dateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 120, -1));
-        add(customerNameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 90, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, 30));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("not found? create a new file");
@@ -213,18 +262,33 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("-------------------------------------------------------------------");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        backBtn.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn.setText("Back<<");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, -1, -1));
+
+        dataComBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(dataComBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 120, -1));
+        add(dateRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        add(flightRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        add(flightSearchRedio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        add(departureRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
+        add(PreRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+        add(ArrivalRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void dateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateTextFieldActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Customer customer = new Customer(travelOffice);
+        CreateCustomerJPanel panel = new CreateCustomerJPanel(cardSequenceJPanel, customer, travelOffice.getCustomerDirectory());
+        cardSequenceJPanel.add(panel);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void choseSeatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseSeatBtnActionPerformed
@@ -238,26 +302,141 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
             Flight flight = (Flight) flightJTable.getValueAt(selectedFlight, 0);
             Customer customer = (Customer) customerJTable.getValueAt(selectedCustomer, 0);
           
-            SelectSeatJPanel panel = new SelectSeatJPanel(flight, customer);
+            SelectSeatJPanel panel = new SelectSeatJPanel(cardSequenceJPanel,flight, customer,travelOffice);
             cardSequenceJPanel.add(panel);
             CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
             layout.next(cardSequenceJPanel); 
         }
     }//GEN-LAST:event_choseSeatBtnActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void findPreferBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findPreferBtnActionPerformed
+        // TODO add your handling code here:
+//        List<Flight> list = new ArrayList<>();
+        if(flightRadioBtn.isSelected()){
+            populateFlight(MasterTravelSchedule.getInstance().searchFlightsByFlightNum(flightCombox.getSelectedItem().toString()));
+//            dateRadioBtn.setEnabled(false);
+//            departureRadioBtn.setEnabled(false);
+//            ArrivalRadioBtn.setEnabled(false);
+//            PreRadioBtn.setEnabled(false);
+        }else if ((dateRadioBtn.isSelected())
+                && (!departureRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString()));
+        }else if ((departureRadioBtn.isSelected())
+                && (!dateRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByDeparture(this.allFlightList, departLocationComBox.getSelectedItem().toString()));
+        }else if (ArrivalRadioBtn.isSelected()
+                && (!departureRadioBtn.isSelected())
+                && (!dateRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByArrival(this.allFlightList, ArrivalLocationComBox1.getSelectedItem().toString()));
+        }else if (PreRadioBtn.isSelected()
+                && (!departureRadioBtn.isSelected())
+                && (!dateRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())){
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(this.allFlightList, preferrenceComBox.getSelectedItem().toString()));
+        }else if((dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            List<Flight> searchList = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByDeparture(searchList, departLocationComBox.getSelectedItem().toString()));
+        }else if((dateRadioBtn.isSelected())
+                && (!departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            List<Flight> searchList = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByArrival(searchList, ArrivalLocationComBox1.getSelectedItem().toString()));
+        }else if((dateRadioBtn.isSelected())
+                && (!departureRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList, preferrenceComBox.getSelectedItem().toString()));
+        }else if((!dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            List<Flight> searchList = MasterTravelSchedule.getInstance().searchFlightByDeparture(this.allFlightList, departLocationComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByArrival(searchList, ArrivalLocationComBox1.getSelectedItem().toString()));
+        }else if((!dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList = MasterTravelSchedule.getInstance().searchFlightByDeparture(this.allFlightList, departLocationComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList, preferrenceComBox.getSelectedItem().toString()));                                                  
+        }else if((!dateRadioBtn.isSelected())
+                && (!departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList = MasterTravelSchedule.getInstance().searchFlightByArrival(this.allFlightList, ArrivalLocationComBox1.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList, preferrenceComBox.getSelectedItem().toString()));                                                  
+        }else if((!dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList1 = MasterTravelSchedule.getInstance().searchFlightByDeparture(this.allFlightList, departLocationComBox.getSelectedItem().toString());
+            List<Flight> searchList2 = MasterTravelSchedule.getInstance().searchFlightByArrival(searchList1, ArrivalLocationComBox1.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList2, preferrenceComBox.getSelectedItem().toString()));                                                  
+        }else if((dateRadioBtn.isSelected())
+                && (!departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList1 = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            List<Flight> searchList2 = MasterTravelSchedule.getInstance().searchFlightByArrival(searchList1, ArrivalLocationComBox1.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList2, preferrenceComBox.getSelectedItem().toString()));                                                  
+        }else if((dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (!ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList1 = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            List<Flight> searchList2 = MasterTravelSchedule.getInstance().searchFlightByDeparture(searchList1, departLocationComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList2, preferrenceComBox.getSelectedItem().toString()));                                                  
+        }else if((dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (!PreRadioBtn.isSelected())){
+            List<Flight> searchList1 = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            List<Flight> searchList2 = MasterTravelSchedule.getInstance().searchFlightByDeparture(searchList1, departLocationComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByArrival(searchList2, ArrivalLocationComBox1.getSelectedItem().toString()));                                                  
+        }else if((dateRadioBtn.isSelected())
+                && (departureRadioBtn.isSelected())
+                && (ArrivalRadioBtn.isSelected())
+                && (PreRadioBtn.isSelected())){
+            List<Flight> searchList1 = MasterTravelSchedule.getInstance().searchFlightByDate(this.allFlightList, dataComBox.getSelectedItem().toString());
+            List<Flight> searchList2 = MasterTravelSchedule.getInstance().searchFlightByDeparture(searchList1, departLocationComBox.getSelectedItem().toString());
+            List<Flight> searchList3 = MasterTravelSchedule.getInstance().searchFlightByTimeRange(searchList2, preferrenceComBox.getSelectedItem().toString());
+            populateFlight((List<Flight>) MasterTravelSchedule.getInstance().searchFlightByArrival(searchList3, ArrivalLocationComBox1.getSelectedItem().toString()));
+        }
+    }//GEN-LAST:event_findPreferBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ArrivalLocationComBox1;
+    private javax.swing.JRadioButton ArrivalRadioBtn;
+    private javax.swing.JRadioButton PreRadioBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton choseSeatBtn;
     private javax.swing.JTable customerJTable;
-    private javax.swing.JTextField customerNameJTextField;
-    private javax.swing.JTextField dateTextField;
+    private javax.swing.JComboBox<String> dataComBox;
+    private javax.swing.JRadioButton dateRadioBtn;
     private javax.swing.JComboBox<String> departLocationComBox;
-    private javax.swing.JComboBox<String> departLocationComBox1;
-    private javax.swing.JComboBox<String> departLocationComBox2;
-    private javax.swing.JComboBox<String> departLocationComBox3;
+    private javax.swing.JRadioButton departureRadioBtn;
+    private javax.swing.JButton findPreferBtn;
+    private javax.swing.JComboBox<String> flightCombox;
     private javax.swing.JTable flightJTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JRadioButton flightRadioBtn;
+    private javax.swing.JRadioButton flightSearchRedio2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -268,5 +447,6 @@ public class BookingTicketJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> preferrenceComBox;
     // End of variables declaration//GEN-END:variables
 }
