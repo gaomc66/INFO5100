@@ -27,6 +27,7 @@ public class Flight {
     // getter/ setter
     // seat manage
     // seat assignment
+
         //-----------------
     private String[][] seatNumber;
     private Map<String,Customer> seatMap;
@@ -35,10 +36,10 @@ public class Flight {
     private Airliner airliner;
     private String flightNo;
     private Airplane airplane;
+
     private String departure;
     private String destination;
-    private Date date = new Date();
-
+    private Date date;
     private LocalTime startTime;
     private LocalTime arriveTime;
     private double price; 
@@ -70,7 +71,8 @@ public class Flight {
     }
 
     public Flight() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                setSeatMap();
+
     }
     
     public void setSeatMap(){
@@ -174,20 +176,18 @@ public class Flight {
     }
 
     public String getDestination() {
-        if(destination == null)
-        {
-            return null;
-        
-        }else{
-            return destination;
-        }
+        return destination;
     }
 
     public void setDestination(String destination) {
         this.destination = destination;
     }
 
-    public String getDate() {
+    public Date getDateObject() {
+        return date;
+    }
+    
+    public String getDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(date);
     }
@@ -221,9 +221,7 @@ public class Flight {
     }
     
     
-    public String getRoute(String departute,String destination){
-        this.departure= departute;
-        this.destination = destination;
+    public String getRoute(){
         String route =departure+"—"+destination;
         return route;
     }

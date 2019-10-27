@@ -21,7 +21,14 @@ public class UserAccount {
     private Airliner airliner;
     private TravelOffice travelOffice;
 
-    public UserAccount() {
+    public UserAccount(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        
+    }
+    
+    public UserAccount(){
         
     }
     

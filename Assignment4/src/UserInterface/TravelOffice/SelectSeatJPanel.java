@@ -11,6 +11,7 @@ import Business.TravelOffice.TravelOffice;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -93,12 +94,20 @@ public class SelectSeatJPanel extends javax.swing.JPanel {
 
     private void bookTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketBtnActionPerformed
         // TODO add your handling code here:
-        
+        boolean isBooked = false;
         String selectedSeat = SeatNumberComBox.getSelectedItem().toString();
-        
-//        if(flight.getSeatAssignment().values() != null){
-//                JOptionPane.showMessageDialog(null, "Seat Unavaliable!");
-//        }else{
+        // 
+        Map<String,Customer> seatAssignment = flight.getSeatAssignment();
+        for(String seat : seatAssignment.keySet()){
+            if(seat.equals(selectedSeat)){
+                if(seatAssignment.get(seat) != null){
+                    isBooked = true;
+                }
+            }
+        }
+        if(isBooked){
+                JOptionPane.showMessageDialog(null, "Seat Unavaliable!");
+        }else{
             this.flight.SeatAssignment(customer, selectedSeat);
         
         Ticket ticket = new Ticket
@@ -106,7 +115,7 @@ public class SelectSeatJPanel extends javax.swing.JPanel {
             ticket.setPending(true);
             travelOffice.getTicketDirectory().getTicketList().add(ticket);
             JOptionPane.showMessageDialog(null, "Ticket booked!");
-//        }
+        }
     }//GEN-LAST:event_bookTicketBtnActionPerformed
 
     private void SeatNumberComBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeatNumberComBoxActionPerformed

@@ -21,8 +21,10 @@ public class AirlinerDirectory {
     }
     
     public Airliner createAirliner(String name){
+
         Airliner airliner = new Airliner();
         airliner.setName(name);
+
         airlinerList.add(airliner);
         return airliner;
     }

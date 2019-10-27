@@ -24,5 +24,5 @@ public class TicketDirectory {
     public List<Ticket> getTicketList(){
         return this.ticketList;
     }
-   
+
 }

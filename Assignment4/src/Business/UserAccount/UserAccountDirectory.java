@@ -41,8 +41,7 @@ public class UserAccountDirectory {
         userAccountList.add(userAccount);
         return userAccount;
     }
-    
-    
+
     
     public boolean deleteAirlinerUserAccount(Airliner airliner){
         boolean success = false;
@@ -79,4 +78,5 @@ public class UserAccountDirectory {
         } 
         return success;
     }
+
 }

@@ -72,7 +72,7 @@ public class ViewAirLinerJPanel extends javax.swing.JPanel {
             row[0] = flight.getFlightNo();
             row[1] = flight.getDeparture();
             row[2] = flight.getDestination();
-            row[3] = String.valueOf(flight.getDate());
+            row[3] = flight.getDate();
             row[4] = flight.getStartTime().format(DateTimeFormatter.ISO_TIME);
             row[5] = flight.getArriveTime().format(DateTimeFormatter.ISO_TIME);
             row[6] = flight.getPrice() + "";

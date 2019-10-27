@@ -13,8 +13,10 @@ package Business.Airliner;
 
 import Business.Airliner.Fleet.AirplaneDirectory;
 import Business.Airliner.Flight.FlightSchedual;
+import Business.Ticket.Ticket;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Airliner {
@@ -27,6 +29,16 @@ public class Airliner {
     private AirplaneDirectory airplaneDirectory;
     private FlightSchedual flightSchedual;
     private static int count = 1;
+    private List<Ticket> orderedTickets;
+    
+    public Airliner(String name){
+        this.flightSchedual = new FlightSchedual(this);
+        this.airplaneDirectory =new AirplaneDirectory();
+        this.name = name;
+        this.id = String.format("%05d", count);
+        count ++;
+        orderedTickets = new ArrayList<>();
+    }
     
     public Airliner(){
         this.flightSchedual = new FlightSchedual(this);
@@ -34,6 +46,15 @@ public class Airliner {
 //        this.name = name;
         this.id = String.format("%05d", count);
         count ++;
+        orderedTickets = new ArrayList<>();
+    }
+    
+    public void addOrderedTicket(Ticket t){
+        orderedTickets.add(t);
+    }
+    
+    public List<Ticket> getOrderedTicketList(){
+        return orderedTickets;
     }
     
 
@@ -89,5 +110,10 @@ public class Airliner {
     public int getAirplaneNum(){
         return this.airplaneDirectory.getAirplaneList().size();
     }
+
+    
+
+
+
    
 }

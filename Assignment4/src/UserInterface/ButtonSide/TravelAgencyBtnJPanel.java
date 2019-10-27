@@ -10,7 +10,6 @@ import Business.TravelAgency.TravelAgency;
 import UserInterface.TravelAgency.ManageAirlinerJPanel;
 import UserInterface.TravelAgency.ManageMasterTravelSchedulJPanel;
 import UserInterface.TravelAgency.ManageTravelOfficeJPanel;
-//import UserInterface.TravelAgency.ManageTravelOfficeJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -90,7 +89,7 @@ public class TravelAgencyBtnJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageTavelOfficBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTavelOfficBtnActionPerformed
-//         TODO add your handling code here:
+        // TODO add your handling code here:
         ManageTravelOfficeJPanel manageTO = new ManageTravelOfficeJPanel(travelAgency, cardSequenceJPanel);
         cardSequenceJPanel.add(manageTO);
         CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();

@@ -47,36 +47,11 @@ public class Configuration {
     }
     
     private static void configureAirliner(TravelAgency travelAgency){
-        //create the object of airliner 
-//        Airliner airliner = new Airliner();
-//        airliner.setId("001");
-//        airliner.setName("BlueJet");
-//        travelAgency.getAirlinerDirectory().getAirlinerList().add(airliner);
-        //create another object of airliner
-//        Airliner airliner2 = new Airliner();
-//        airliner2.setId("002");
-//        airliner2.setName("United Airlines");
-//        travelAgency.getAirlinerDirectory().getAirlinerList().add(airliner2);
-//        
+
+        
         Airliner airliner1 = travelAgency.addAirliner("BlueJet", "BlueJet", "111");
         Airliner airliner2 = travelAgency.addAirliner("United Airlines", "United Airlines", "222");
-        //set useraccount for airliner
-//        UserAccount userAccount = new UserAccount();
-//        userAccount.setUsername("BlueJet");
-//        userAccount.setPassword("111");
-//        userAccount.setRole("Airliner");
-//        userAccount.setMember(airliner);
-        
-//        travelAgency.getUserAccountDirectory().getUserAccountList().add(userAccount);
-//        //set useraccount for airliner2
-//        UserAccount userAccount2 = new UserAccount();
-//        userAccount2.setUsername("United Airlines");
-//        userAccount2.setPassword("222");
-//        userAccount2.setRole("Airliner");
-//        userAccount2.setMember(airliner2);
-        
-//        travelAgency.getUserAccountDirectory().getUserAccountList().add(userAccount2);
-        //configureFlight(airliner);
+
         ArrayList<Airliner> airlinerList= new ArrayList<>();
         airlinerList.add(airliner1);
         airlinerList.add(airliner2);

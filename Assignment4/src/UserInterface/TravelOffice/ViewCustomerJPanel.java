@@ -60,7 +60,6 @@ public class ViewCustomerJPanel extends javax.swing.JPanel {
         saveCustomerBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         ticketInfoTextField = new javax.swing.JTextField();
         identityTypeComBox = new javax.swing.JComboBox<>();
@@ -132,15 +131,6 @@ public class ViewCustomerJPanel extends javax.swing.JPanel {
         });
         add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 100, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("// Book Ticket for this Customer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
-
         jLabel5.setText("Ticket Info:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 30));
 
@@ -206,10 +196,6 @@ public class ViewCustomerJPanel extends javax.swing.JPanel {
         customer.setIdentityID(identityIDTextField.getText());      
     }//GEN-LAST:event_saveCustomerBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void ticketInfoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketInfoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ticketInfoTextFieldActionPerformed
@@ -219,7 +205,6 @@ public class ViewCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField identityIDTextField;
     private javax.swing.JComboBox<String> identityTypeComBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

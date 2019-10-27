@@ -45,7 +45,8 @@ public class FlightDetailJPanel extends javax.swing.JPanel {
         flightNoTxt.setText(flight.getFlightNo());
         departureTxt.setText(flight.getDeparture());
         destinationTxt.setText(flight.getDestination());
-        dateTxt.setText(String.valueOf(flight.getDate()));
+        dateTxt.setText(flight.getDate());
+        
         
  
         priceTxt.setText(String.valueOf(flight.getPrice()));

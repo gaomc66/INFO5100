@@ -43,7 +43,7 @@ public class ManageFlightJPanel extends javax.swing.JPanel {
         for(Flight flight: flightList.getFlghtList()){
             Object[] row = new Object[4];
             row[0]= flight;
-            row[1]= flight.getRoute(flight.getDeparture(),flight.getDestination());
+            row[1]= flight.getRoute();
             row[2]= flight.getDate();
             row[3]= flight.getPrice();
             dtm.addRow(row);

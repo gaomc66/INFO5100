@@ -5,7 +5,8 @@
  */
 package Business.Ticket;
 
-import Business.Airliner.Flight.Flight;
+import Business.Airliner.Airliner;
+import Business.Airliner.Flight.*;
 import Business.TravelOffice.Customer.Customer;
 import Business.TravelOffice.TravelOffice;
 
@@ -100,4 +101,50 @@ public class Ticket {
     public String getAirlinerName(){
         return flight.getAirliner().getName();
     }
+    
+    public Airliner getAirliner(){
+        return flight.getAirliner();
+    }
+
+//    public void setBookOffice(String bookOffice) {
+//        this.bookOffice = bookOffice;
+//    }
+//
+//    public String getFlightInfo() {
+//        return flight.getFlightNo();
+//    }
+//
+//    public String getSeatInfo() {
+//        return seatInfo;
+//    }
+//
+//    public String getCustomerInfo() {
+//        return "Name: " + customer.getName() + "ID: " + customer.getIdentityID();
+//    }
+//
+//    public String getAirplaneInfo() {
+//        return flight.getAirplane().toString();
+//    }
+//
+//    public boolean isPending() {
+//        return pending;
+//    }
+//
+//    public void setPending(boolean pending) {
+//        this.pending = pending;
+//    }
+//
+//    public String getFlightNumber() {
+//        return flight.getFlightNo();
+//    }
+//    
+//    public String getAirlinerName(){
+//        return flight.getAirliner().getName();
+//    }
+//
+//    @Override
+//    public String toString(){
+//        return ticketNumber;
+//    }
+    
 }

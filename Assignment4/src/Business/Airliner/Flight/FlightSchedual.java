@@ -5,6 +5,7 @@
  */
 package Business.Airliner.Flight;
 
+import Business.Airliner.Flight.Flight;
 import Business.Airliner.Airliner;
 import java.util.ArrayList;
 

@@ -63,15 +63,15 @@ public class ViewTravelOfficeJPanel extends javax.swing.JPanel {
             Object[] row = new Object[dfm.getColumnCount()];
             row[0] = ticket;
             row[1] = ticket.getCustomerInfo();
-            row[1] = ticket.getFlightNumber();
-            row[2] = ticket.getAirplaneInfo();
-            row[3] = ticket.getSeatInfo();
-            row[4] = ticket.isPending();
+            row[2] = ticket.getFlightNumber();
+            row[3] = ticket.getAirplaneInfo();
+            row[4] = ticket.getSeatInfo();
+            row[5] = ticket.isPending();
             
             dfm.addRow(row);
         });
     }
- 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -265,6 +265,9 @@ public class ViewTravelOfficeJPanel extends javax.swing.JPanel {
             );
             ticket.setPending(false);
             populateTicketTable();
+            
+            ticket.getAirliner().addOrderedTicket(ticket);
+            
         }
         
     }//GEN-LAST:event_confirmTicketjButtonActionPerformed

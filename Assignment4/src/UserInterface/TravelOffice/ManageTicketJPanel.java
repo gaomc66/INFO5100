@@ -44,7 +44,7 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
             row[0] = ticket;
             row[1] = ticket.getFlightNumber();
             row[2] = ticket.getSeatInfo();
-            row[3] = ticket.getFlight().getDate().toString();
+            row[3] = ticket.getFlight().getDate();
             row[4] = ticket.getAirplaneInfo();
             row[5] = ticket.getCustomerInfo();
             row[6] = ticket.isPending();
@@ -84,9 +84,16 @@ public class ManageTicketJPanel extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(ticketJTable);

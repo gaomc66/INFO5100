@@ -231,6 +231,7 @@ public class CreateNewFlight extends javax.swing.JPanel {
             flight.setStartTime(LocalTime.of(Integer.parseInt(startTimeHour.getText()), Integer.parseInt(startTimeMin.getText())));
             flight.setArriveTime(LocalTime.of(Integer.parseInt(arriveHour.getText()), Integer.parseInt(arriveMin.getText())));
             flight.setPrice(Double.parseDouble(priceTxt.getText()));
+            flight.setSeatMap();
             
             
             flightList.getFlghtList().add(flight);

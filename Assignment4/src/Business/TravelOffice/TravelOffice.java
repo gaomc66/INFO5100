@@ -82,7 +82,7 @@ public class TravelOffice {
                 .filter(ticket -> ticket.isPending() == true)
                 .collect(Collectors.toList());
     }
-   
+ 
     @Override
     public String toString(){
         return id;

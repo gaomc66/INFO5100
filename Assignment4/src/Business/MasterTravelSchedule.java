@@ -117,8 +117,7 @@ public class MasterTravelSchedule {
         }    
         return foundedFlights;
     }
-    
-  
+
     /**
      * Search all the flights by date
      * @param date
@@ -140,13 +139,11 @@ public class MasterTravelSchedule {
      */
     public List<Flight> getAllFlightsOfAirliners(){
         List<Flight> allFlights = new ArrayList<Flight>();
-//        System.out.println("666" );
-
         for(Airliner al : airlinerDir.getAirlinerList()){
-//            System.out.println("al" );
             for(Flight fl : al.getFlightSchedual().getFlghtList())
                 allFlights.add(fl);
-        }        
+        }
+        
         return allFlights;
     }
     
