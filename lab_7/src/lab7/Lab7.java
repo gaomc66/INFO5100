@@ -88,7 +88,7 @@ public class Lab7 {
         }else{
             Post post = new Post(postId, userId);
             post.getComments().add(comment);
-            posts.put(userId, post);
+            posts.put(postId, post);
         }
     }
     
@@ -96,5 +96,12 @@ public class Lab7 {
         // TODO
         helper.userWithMostLikes();
         helper.getFiveMostLikeComment();
+        helper.getAverageLikesPerComment();
+//        helper.userWithMostLikes();
+//        helper.getFiveMostLikeComment();
+        helper.getFiveInactiveUsersByPostNum();
+        helper.getFiveInactiveUsersByCreateCommentsNum();
+        helper.getPostByMostLikedComments();
+        helper.getPostByMostComments();
     }
 }

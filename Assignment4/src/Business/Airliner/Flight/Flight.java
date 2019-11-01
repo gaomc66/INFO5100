@@ -71,7 +71,7 @@ public class Flight {
     }
 
     public Flight() {
-                setSeatMap();
+        setSeatMap();
 
     }
     
