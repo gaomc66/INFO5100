@@ -68,13 +68,17 @@ public class Analysis {
     public static void getTotalRevenue(){
         Map<Integer,Item> items = DataStore.getInstance().getItems();
         Map<Integer,Product> proList = DataStore.getInstance().getProducts();
+        Map<Integer, SalesPerson> salesList = DataStore.getInstance().getSalesPeople();
         int totalRevenue = 0;
-        for(Item item:items.values()){
-            int proId = item.getProductId();
-            int spread = item.getSalesPrice()-proList.get(proId).getTargetPrice();
-            if(spread>0){
-                totalRevenue+= spread*item.getQuantity();
-            }
+//        for(Item item:items.values()){
+//            int proId = item.getProductId();
+//            int spread = item.getSalesPrice()-proList.get(proId).getTargetPrice();
+//            if(spread>0){
+//                totalRevenue+= spread*item.getQuantity();
+//            }
+//        }
+        for(SalesPerson sp: salesList.values()){
+            totalRevenue += sp.getProfit();
         }
         System.out.println("Total revenue for the year that is above expected target is "+totalRevenue);
     }
@@ -116,22 +120,32 @@ public class Analysis {
     
     public static void top3Customers(){
         Map<Integer,Customer> customers = ds.getCustomers();
+//        System.out.println(customers);
         Map<Integer,Integer> customers_totalOverAmount = new HashMap<>();
+        
         for(Customer cus : customers.values()){
             int totalOverAmount = 0;
+        
             for(Item item:cus.getItems()){
-                Product prod = findProductByProductID(item.getProductId());
+                Product prod = ds.getProducts().get(item.getProductId());
+//                Product prod = findProductByProductID(item.getProductId());
                 int salesPrice = item.getSalesPrice();
+             
+//                System.out.println(item.getItemID() + "==" + item.getSalesPrice() + "--" + prod.getTargetPrice());
+                
                 int targetPrice = prod.getTargetPrice();
-                int overAmount = (salesPrice - targetPrice)*item.getQuantity();
-//                System.out.printf("customer ID: %s ;  item ID: %s ; over amount: %d \n",cus.getId(),item.getItemID(),overAmount);
+
+                int overAmount = Math.abs(salesPrice - targetPrice)*item.getQuantity();
                 totalOverAmount += overAmount;
+                
+//                System.out.printf("customer ID: %s ;  item ID: %s ; over amount: %d \n",cus.getId(),item.getItemID(),overAmount);
             }
             customers_totalOverAmount.put(cus.getId(), totalOverAmount);
 //            System.out.println("com.assignment5.analytics.Analysis.top3Customers()");ß
         }
+        System.out.println(customers_totalOverAmount);
         
-        List<Map.Entry<Integer,Integer>> sorted_list = MapSorter.sortMapByValueDescend(customers_totalOverAmount);
+        List<Map.Entry<Integer,Integer>> sorted_list = MapSorter.sortMapByValueAscending(customers_totalOverAmount);
         ArrayList<ArrayList<Map.Entry<Integer,Integer>>> top_list = MapSorter.getTopList(sorted_list, 3);
         
         int top_print = 1;

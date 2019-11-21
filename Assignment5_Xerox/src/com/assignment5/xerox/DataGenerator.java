@@ -60,9 +60,9 @@ public class DataGenerator {
         maxRange = 100;
         cheapestProduct = 20;
         mostExpensiveProduct = 200;
-        
-        generateProductsFile();
-        generateOrdersFile();
+//        
+//        generateProductsFile();
+//        generateOrdersFile();
         
     }
     

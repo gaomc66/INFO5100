@@ -45,9 +45,9 @@ public class DataGenerator {
         likeRange = 200;
         postIdsRange = 40;
         ratingRange = 300;
-        
-        generateCommentFile();
-        generateUserFile();
+//        
+//        generateCommentFile();
+//        generateUserFile();
         
     }
     

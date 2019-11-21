@@ -18,6 +18,7 @@ import static java.util.stream.Collectors.toMap;
 import lab7.entities.Comment;
 import lab7.entities.Post;
 import lab7.entities.User;
+import lab7.utils.MapSorter;
 
 /**
  *
@@ -195,11 +196,69 @@ public class AnalysisHelper {
         
     }
     
+    /**
+     * Top 5 proactive users overall (sum of comments, posts and likes)
+     */
     public void getFiveInactiveUsersByOverall(){
-        
+        Map<Integer,Integer> userProactiveCount = generateUsersProactiveMap();
+       
+        List<Map.Entry<Integer,Integer>> sortedMapList = MapSorter.sortMapByValueAscending(userProactiveCount);
+        System.out.println("Top 5 Inactive users overall:");
+        for(int i = 0;i<5;i++){
+            Integer userID = sortedMapList.get(i).getKey();
+            Integer proactiveCount = sortedMapList.get(i).getValue();
+            System.out.printf("%d. user ID: %d ; active count: %d \n",i+1,userID,proactiveCount);
+        }
     }
     
+    /**
+     * Top 5 proactive users overall (sum of comments, posts and likes)
+     */
     public void getFiveProactiveUsersByOverall(){
-        
+       Map<Integer,Integer> userProactiveCount = generateUsersProactiveMap();
+       
+       List<Map.Entry<Integer,Integer>> sortedMapList = MapSorter.sortMapByValueDescend(userProactiveCount);
+       System.out.println("Top 5 proactive users overall:");
+       for(int i = 0;i<5;i++){
+           Integer userID = sortedMapList.get(i).getKey();
+           Integer proactiveCount = sortedMapList.get(i).getValue();
+           System.out.printf("%d. user ID: %d ; active count: %d \n",i+1,userID,proactiveCount);
+       }
+       
     }
+    
+    /**
+     * generate a map of user and his corresponding posts count, by post map provided by data store
+     * @return 
+     */
+    private Map<Integer,Integer> generateUserPostCount(){
+        Map<Integer,Post> posts = DataStore.getInstance().getPosts();
+        Map<Integer,Integer> userPostCount = new HashMap<>();
+        for(Post post:posts.values()){
+            if(!userPostCount.containsKey(post.getUserId()))
+                userPostCount.put(post.getUserId(),1);
+            else
+                userPostCount.put(post.getUserId(),userPostCount.get(post.getUserId()).intValue()+1);
+        }
+        return userPostCount;
+    }
+    
+    private Map generateUsersProactiveMap(){
+        Map<Integer,Post> posts = DataStore.getInstance().getPosts();
+        Map<Integer,User> users = DataStore.getInstance().getUsers();
+       
+        Map<Integer,Integer> userProactiveCount = new LinkedHashMap<>();
+        for(User user : users.values()){
+            int comments_num = user.getCommentsNum();
+            int likes_num = user.getLikesNum();
+            Map<Integer,Integer> userPostCount = generateUserPostCount();
+            int posts_num = userPostCount.get(user.getId());
+           
+            int proactiveCount = comments_num + likes_num + posts_num;
+            userProactiveCount.put(user.getId(), proactiveCount);
+       }
+        
+        return userProactiveCount;
+    }
+    
 }

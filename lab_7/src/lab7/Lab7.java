@@ -43,6 +43,7 @@ public class Lab7 {
         while((row = userReader.getNextRow()) != null ){
             generateUser(row);
         }
+        System.out.println(DataStore.getInstance().getUsers());
         while((row = commentReader.getNextRow()) != null ){
             Comment comment = generateComment(row);
             generatePost(row, comment);
@@ -103,5 +104,7 @@ public class Lab7 {
         helper.getFiveInactiveUsersByCreateCommentsNum();
         helper.getPostByMostLikedComments();
         helper.getPostByMostComments();
+        helper.getFiveProactiveUsersByOverall();
+        helper.getFiveInactiveUsersByOverall();
     }
 }
